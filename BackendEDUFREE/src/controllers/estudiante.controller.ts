@@ -1,3 +1,4 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -19,11 +20,14 @@ import {
 } from '@loopback/rest';
 import {Estudiante} from '../models';
 import {EstudianteRepository} from '../repositories';
-
+import {AutenticacionService} from '../services';
+import foo from 'node-fetch';
 export class EstudianteController {
   constructor(
     @repository(EstudianteRepository)
-    public estudianteRepository : EstudianteRepository,
+    public estudianteRepository: EstudianteRepository,
+    @service(AutenticacionService)
+    public servicioAutenticacion: AutenticacionService,
   ) {}
 
   @post('/estudiantes')
@@ -44,7 +48,22 @@ export class EstudianteController {
     })
     estudiante: Omit<Estudiante, 'id'>,
   ): Promise<Estudiante> {
-    return this.estudianteRepository.create(estudiante);
+    let clave = this.servicioAutenticacion.GenerarClave();
+    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    estudiante.clave = claveCifrada;
+    let estudianteCreado = await this.estudianteRepository.create(estudiante);
+
+    //Notificar al usuario
+    let destino = estudiante.correoElectronico;
+    let asunto = 'Registro en la plataforma';
+    let contenido = `Hola ${estudiante.nombres}, su nombre de usuario es: ${estudiante.correoElectronico}`;
+
+    foo(
+      `http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`,
+    ).then((data: any) => {
+      console.log(data);
+    });
+    return estudianteCreado;
   }
 
   @get('/estudiantes/count')
@@ -106,7 +125,8 @@ export class EstudianteController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Estudiante, {exclude: 'where'}) filter?: FilterExcludingWhere<Estudiante>
+    @param.filter(Estudiante, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Estudiante>,
   ): Promise<Estudiante> {
     return this.estudianteRepository.findById(id, filter);
   }
