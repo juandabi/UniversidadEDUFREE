@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-const cryptoJS = require('cryptojs');
-
+const CryptoJS = require('crypto-js');
 @Component({
   selector: 'app-identificacion',
   templateUrl: './identificacion.component.html',
@@ -9,7 +8,7 @@ const cryptoJS = require('cryptojs');
 })
 export class IdentificacionComponent implements OnInit {
   fgValidador: FormGroup = this.fb.group({
-    correo: ['', [Validators.required, Validators.correo]],
+    correo: ['', [Validators.required, Validators.email]],
     clave: ['', [Validators.required, Validators.minLength(6)]],
   });
 
@@ -20,6 +19,6 @@ export class IdentificacionComponent implements OnInit {
   identificarUsuario(): void {
     let correo = this.fgValidador.controls['correo'].value;
     let clave = this.fgValidador.controls['clave'].value;
-    let claveCifrada = cryptoJS.md5(clave);
+    let claveCifrada = CryptoJS.md5(clave);
   }
 }
