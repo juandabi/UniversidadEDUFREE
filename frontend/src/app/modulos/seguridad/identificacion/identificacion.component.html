@@ -1,0 +1,57 @@
+<div id="login-page" class="row center">
+  <div class="col s12 z-depth-6 card-panel">
+    <form
+      class="login-form"
+      [formGroup]="fgValidador"
+      (ngSubmit)="identificarUsuario()"
+    >
+      <div class="row"></div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">mail_outline</i>
+          <input
+            formControlName="correo"
+            class="validate"
+            id="correo"
+            type="email"
+          />
+          <label for="correo" data-error="wrong" data-success="right"
+            >Correo electrónico</label
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">lock_outline</i>
+          <input formControlName="clave" id="clave" type="clave" />
+          <label for="clave">Contraseña</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button
+            [disabled]="!fgValidador.valid"
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            type="submit"
+            name="action"
+          >
+            Ingresar
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m6 l6">
+          <p class="margin left-align medium-small">
+            <a href="#">Registrarme</a>
+          </p>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <p class="margin right-align medium-small">
+            <a href="#">Recuperar contraseña</a>
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
