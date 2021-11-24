@@ -1,3 +1,4 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -7,24 +8,60 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  HttpErrors,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
+import {Llaves} from '../config/llaves';
 import {Usuario} from '../models';
+import {Credenciales} from '../models/credenciales.model';
 import {UsuarioRepository} from '../repositories';
+import {AutenticacionService} from '../services';
+
+const fetch = require('node-fetch');
 
 export class UsuarioController {
   constructor(
     @repository(UsuarioRepository)
-    public usuarioRepository : UsuarioRepository,
+    public usuarioRepository: UsuarioRepository,
+    @service(AutenticacionService)
+    public servicioAutenticacion: AutenticacionService,
   ) {}
+
+  @post('/identificarUsuario', {
+    responses: {
+      '200': {
+        description: 'Identificación de usuarios',
+      },
+    },
+  })
+  async identificarUsuario(@requestBody() Credenciales: Credenciales) {
+    let p = await this.servicioAutenticacion.IdentificarUsuario(
+      Credenciales.correo,
+      Credenciales.clave,
+    );
+    if (p) {
+      let token = this.servicioAutenticacion.GenerarTokenJWT(p);
+      return {
+        datos: {
+          nombres: p.nombres,
+          apellidos: p.apellidos,
+          correo: p.correoElectronico,
+          id: p.id,
+        },
+        tk: token,
+      };
+    } else {
+      throw new HttpErrors[401]('Usuario o contraseña incorrectos');
+    }
+  }
 
   @post('/usuarios')
   @response(200, {
@@ -37,14 +74,28 @@ export class UsuarioController {
         'application/json': {
           schema: getModelSchemaRef(Usuario, {
             title: 'NewUsuario',
-            
+            exclude: ['clave'],
           }),
         },
       },
     })
     usuario: Usuario,
   ): Promise<Usuario> {
-    return this.usuarioRepository.create(usuario);
+    let clave = this.servicioAutenticacion.GenerarClave();
+    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    usuario.clave = claveCifrada;
+    let p = await this.usuarioRepository.create(usuario);
+
+    //Notificar al usuario
+    let destino = usuario.correoElectronico;
+    let asunto = 'Registro en la plataforma';
+    let mensaje = `Hora ${usuario.nombres}, su nombre de usuario es: ${usuario.correoElectronico} y su contraseña es: ${clave}`;
+    fetch(
+      `${Llaves.urlSerivicioNotificaciones}/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${mensaje}`,
+    ).then((data: any) => {
+      console.log(data);
+    });
+    return p;
   }
 
   @get('/usuarios/count')
@@ -52,9 +103,7 @@ export class UsuarioController {
     description: 'Usuario model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Usuario) where?: Where<Usuario>,
-  ): Promise<Count> {
+  async count(@param.where(Usuario) where?: Where<Usuario>): Promise<Count> {
     return this.usuarioRepository.count(where);
   }
 
@@ -106,7 +155,8 @@ export class UsuarioController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Usuario, {exclude: 'where'}) filter?: FilterExcludingWhere<Usuario>
+    @param.filter(Usuario, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Usuario>,
   ): Promise<Usuario> {
     return this.usuarioRepository.findById(id, filter);
   }

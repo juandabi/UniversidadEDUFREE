@@ -7,13 +7,13 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
@@ -23,7 +23,7 @@ import {PerfilRepository} from '../repositories';
 export class PerfilController {
   constructor(
     @repository(PerfilRepository)
-    public perfilRepository : PerfilRepository,
+    public perfilRepository: PerfilRepository,
   ) {}
 
   @post('/perfiles')
@@ -37,12 +37,11 @@ export class PerfilController {
         'application/json': {
           schema: getModelSchemaRef(Perfil, {
             title: 'NewPerfil',
-            exclude: ['id'],
           }),
         },
       },
     })
-    perfil: Omit<Perfil, 'id'>,
+    perfil: Perfil,
   ): Promise<Perfil> {
     return this.perfilRepository.create(perfil);
   }
@@ -52,9 +51,7 @@ export class PerfilController {
     description: 'Perfil model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Perfil) where?: Where<Perfil>,
-  ): Promise<Count> {
+  async count(@param.where(Perfil) where?: Where<Perfil>): Promise<Count> {
     return this.perfilRepository.count(where);
   }
 
@@ -70,9 +67,7 @@ export class PerfilController {
       },
     },
   })
-  async find(
-    @param.filter(Perfil) filter?: Filter<Perfil>,
-  ): Promise<Perfil[]> {
+  async find(@param.filter(Perfil) filter?: Filter<Perfil>): Promise<Perfil[]> {
     return this.perfilRepository.find(filter);
   }
 
@@ -106,7 +101,8 @@ export class PerfilController {
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Perfil, {exclude: 'where'}) filter?: FilterExcludingWhere<Perfil>
+    @param.filter(Perfil, {exclude: 'where'})
+    filter?: FilterExcludingWhere<Perfil>,
   ): Promise<Perfil> {
     return this.perfilRepository.findById(id, filter);
   }

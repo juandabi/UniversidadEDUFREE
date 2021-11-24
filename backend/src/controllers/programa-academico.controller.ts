@@ -7,29 +7,35 @@ import {
   Where,
 } from '@loopback/repository';
 import {
-  post,
-  param,
+  del,
   get,
   getModelSchemaRef,
+  param,
   patch,
+  post,
   put,
-  del,
   requestBody,
   response,
 } from '@loopback/rest';
 import {ProgramaAcademico} from '../models';
 import {ProgramaAcademicoRepository} from '../repositories';
+/*
+Utilizo el servicio @authenticate.skip para seleccionar cual metodo no va a proteger
+@authenticate('admin')
+*/
 
 export class ProgramaAcademicoController {
   constructor(
     @repository(ProgramaAcademicoRepository)
-    public programaAcademicoRepository : ProgramaAcademicoRepository,
+    public programaAcademicoRepository: ProgramaAcademicoRepository,
   ) {}
 
   @post('/programas-academicos')
   @response(200, {
     description: 'ProgramaAcademico model instance',
-    content: {'application/json': {schema: getModelSchemaRef(ProgramaAcademico)}},
+    content: {
+      'application/json': {schema: getModelSchemaRef(ProgramaAcademico)},
+    },
   })
   async create(
     @requestBody({
@@ -65,7 +71,9 @@ export class ProgramaAcademicoController {
       'application/json': {
         schema: {
           type: 'array',
-          items: getModelSchemaRef(ProgramaAcademico, {includeRelations: true}),
+          items: getModelSchemaRef(ProgramaAcademico, {
+            includeRelations: true,
+          }),
         },
       },
     },
@@ -100,13 +108,16 @@ export class ProgramaAcademicoController {
     description: 'ProgramaAcademico model instance',
     content: {
       'application/json': {
-        schema: getModelSchemaRef(ProgramaAcademico, {includeRelations: true}),
+        schema: getModelSchemaRef(ProgramaAcademico, {
+          includeRelations: true,
+        }),
       },
     },
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(ProgramaAcademico, {exclude: 'where'}) filter?: FilterExcludingWhere<ProgramaAcademico>
+    @param.filter(ProgramaAcademico, {exclude: 'where'})
+    filter?: FilterExcludingWhere<ProgramaAcademico>,
   ): Promise<ProgramaAcademico> {
     return this.programaAcademicoRepository.findById(id, filter);
   }
