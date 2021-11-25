@@ -26,6 +26,8 @@ export class UsuarioPorGrupoController {
     public usuarioPorGrupoRepository : UsuarioPorGrupoRepository,
   ) {}
 
+
+  // TODO: CREAR EL ATRIBUTO DE DOCENTE ASIGNADO AL GRUPO
   @post('/usuarios-por-grupos')
   @response(200, {
     description: 'UsuarioPorGrupo model instance',

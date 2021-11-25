@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-const CryptoJS = require('crypto-js');
+import * as cryptoJS from 'crypto-js';
+import { SeguridadService } from 'src/app/servicios/seguridad.service';
 @Component({
   selector: 'app-identificacion',
   templateUrl: './identificacion.component.html',
@@ -12,13 +13,31 @@ export class IdentificacionComponent implements OnInit {
     clave: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private servicioSeguridad: SeguridadService
+  ) {}
 
   ngOnInit(): void {}
 
   identificarUsuario(): void {
     let correo = this.fgValidador.controls['correo'].value;
     let clave = this.fgValidador.controls['clave'].value;
-    let claveCifrada = CryptoJS.md5(clave);
+    let claveCifrada = cryptoJS.MD5(clave).toString();
+    /* TODO: ENVIAR CLAVE ENCRIPTADA
+     ** this.servicioSeguridad.Identificar(correo, claveCifrada)
+     */
+    this.servicioSeguridad.Identificar(correo, clave).subscribe({
+      next: (datos: any) => {
+        //OK
+
+        alert('Usuario identificado');
+      },
+      error: (error) => {
+        //KO
+        alert(clave);
+        alert('Usuario no identificado');
+      },
+    });
   }
 }
