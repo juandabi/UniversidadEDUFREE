@@ -6,6 +6,10 @@ import { BuscarUsuarioComponent } from './usuarios/buscar-usuario/buscar-usuario
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
 import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-usuario.component';
+import { BuscarProgramaAcademicoComponent } from './programas-academicos/buscar-programa-academico/buscar-programa-academico.component';
+import { CrearProgramaAcademicoComponent } from './programas-academicos/crear-programa-academico/crear-programa-academico.component';
+import { EliminarProgramaAcademicoComponent } from './programas-academicos/eliminar-programa-academico/eliminar-programa-academico.component';
+import { EditarProgramaAcademicoComponent } from './programas-academicos/editar-programa-academico/editar-programa-academico.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +17,10 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     EditarUsuarioComponent,
     EliminarUsuarioComponent,
     BuscarUsuarioComponent,
+    BuscarProgramaAcademicoComponent,
+    CrearProgramaAcademicoComponent,
+    EliminarProgramaAcademicoComponent,
+    EditarProgramaAcademicoComponent,
   ],
   imports: [
     CommonModule,

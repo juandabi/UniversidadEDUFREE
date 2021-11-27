@@ -28,5 +28,10 @@
   "eslint.validate": [
     "javascript",
     "typescript"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#3D1C61",
+    "titleBar.activeBackground": "#552788",
+    "titleBar.activeForeground": "#FCFAFE"
+  }
 }

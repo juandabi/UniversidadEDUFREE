@@ -10,6 +10,7 @@ import { SeguridadService } from './seguridad.service';
 export class UsuarioService {
   url = 'http://localhost:3000';
   token: string = '';
+
   constructor(
     private http: HttpClient,
     private seguridadServicio: SeguridadService
@@ -44,6 +45,7 @@ export class UsuarioService {
       }
     );
   }
+
   EliminarUsuario(id: string): Observable<any> {
     return this.http.delete<ModeloUsuario>(`${this.url}/usuarios/${id}`, {
       headers: new HttpHeaders({
