@@ -9,6 +9,11 @@
         <a routerLink="/administracion/listar-usuarios">Usuarios</a>
       </li>
       <li *ngIf="seInicioSesion">
+        <a routerLink="/administracion/listar-programas-academicos"
+          >Programas academicos</a
+        >
+      </li>
+      <li *ngIf="seInicioSesion">
         <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>
       </li>
       <li *ngIf="seInicioSesion">
@@ -24,6 +29,11 @@
 <ul class="sidenav" id="mobile-demo">
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-usuarios">Usuarios</a>
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/listar-programas-academicos"
+      >Programas academicos</a
+    >
   </li>
   <li *ngIf="seInicioSesion">
     <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>

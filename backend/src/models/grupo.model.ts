@@ -41,7 +41,7 @@ export class Grupo extends Entity {
     type: 'string',
     required: false,
   })
-  docente: string;
+  docenteId: string;
 
   @property({
     type: 'object',
