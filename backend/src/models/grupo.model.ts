@@ -1,7 +1,26 @@
-import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
+import {
+  belongsTo,
+  Entity,
+  hasMany,
+  model,
+  property,
+} from '@loopback/repository';
 import {Asignatura} from './asignatura.model';
-import {Usuario} from './usuario.model';
 import {UsuarioPorGrupo} from './usuario-por-grupo.model';
+import {Usuario} from './usuario.model';
+
+// DONE: CREAR EL ATRIBUTO DE DOCENTE ASIGNADO AL GRUPO
+
+/* DONE: CAMBIAR LA ESTRUCTURA DE LAS NOTAS ASIGNADA, PORCENTAJE Y CALIFICACIÓN
+ ** SE PUEDE ASIGNAR COMO UN DICCIONARIO DE NOTAS, POR EJEMPLO:
+ ** {"nota1": { "Nombre": "resumen pelicula", "Porcentaje": 0.1 }}
+ ** {
+ **   "nota1": {string , number},
+ **   "nota2": {string , number},
+ **   "nota3": {string , number},
+ **   "nota4": {string , number},
+ ** }
+ */
 
 @model()
 export class Grupo extends Entity {
@@ -19,10 +38,22 @@ export class Grupo extends Entity {
   nombre: string;
 
   @property({
+    type: 'string',
+    required: false,
+  })
+  docente: string;
+
+  @property({
     type: 'object',
     required: true,
   })
   horario: object;
+
+  @property({
+    type: 'object',
+    required: false,
+  })
+  actividades: object;
 
   @belongsTo(() => Asignatura)
   asignaturaId: string;

@@ -1,15 +1,13 @@
 import {Entity, model, property} from '@loopback/repository';
 
-// TODO: AGREGAR EL ATRIBUJO DE DOCENTE ASIGNADO AL GRUPO
-
-/* TODO: CAMBIAR LA ESTRUCTURA DE LAS NOTAS ASIGNADA, PORCENTAJE Y CALIFICACIÓN
+/* DONE: CAMBIAR LA ESTRUCTURA DE LAS NOTAS ASIGNADA, PORCENTAJE Y CALIFICACIÓN
  ** SE PUEDE ASIGNAR COMO UN DICCIONARIO DE NOTAS, POR EJEMPLO:
- ** {"NOMBRE NOTA": { "Porcentaje": 0.0, "Calificación": 0.0 }}
+ ** {"nota1": 0.1 }
  ** {
- **   "nota1": {0.5 , 5},
- **   "nota2": {0.2 , 3.5},
- **   "nota3": {0.2 , 3},
- **   "nota4": {0.1 , 4.5},
+ **   "nota1": number,
+ **   "nota2": number,
+ **   "nota3": number,
+ **   "nota4": number,
  ** }
  */
 @model()
@@ -22,16 +20,10 @@ export class UsuarioPorGrupo extends Entity {
   id?: string;
 
   @property({
-    type: 'number',
-    required: true,
+    type: 'object',
+    required: false,
   })
-  calificacion: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  porcentaje: number;
+  calificacion: object;
 
   @property({
     type: 'string',

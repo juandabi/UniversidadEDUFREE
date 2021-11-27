@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as cryptoJS from 'crypto-js';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
 @Component({
@@ -15,7 +16,8 @@ export class IdentificacionComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private servicioSeguridad: SeguridadService
+    private servicioSeguridad: SeguridadService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -32,8 +34,10 @@ export class IdentificacionComponent implements OnInit {
     this.servicioSeguridad.Identificar(correo, claveCifrada).subscribe({
       next: (datos: any) => {
         //OK
-
+        this.servicioSeguridad.AlmacenarSesion(datos);
+        this.router.navigate(['/inicio']);
         alert('Usuario identificado');
+        // this.servicioSeguridad.AlmacenarSesion(datos);
       },
       error: (error) => {
         //KO

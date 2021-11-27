@@ -5,15 +5,33 @@
       ><i class="material-icons">menu</i></a
     >
     <ul class="right hide-on-med-and-down">
-      <li><a routerlink="/administracion/usuarios">Usuarios</a></li>
-      <li><a routerlink="/seguridad/cambioClave">Cambiar Clave</a></li>
-      <li><a routerlink="/seguridad/identificar">Iniciar sesión</a></li>
+      <li *ngIf="seInicioSesion">
+        <a routerLink="/administracion/usuarios">Usuarios</a>
+      </li>
+      <li *ngIf="seInicioSesion">
+        <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>
+      </li>
+      <li *ngIf="seInicioSesion">
+        <a routerLink="/seguridad/cerrarSesion">Cerrar sesión</a>
+      </li>
+      <li *ngIf="!seInicioSesion">
+        <a routerLink="/seguridad/identificar">Iniciar sesión</a>
+      </li>
     </ul>
   </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
-  <li><a routerlink="/administracion/usuarios">Usuarios</a></li>
-  <li><a routerlink="/seguridad/cambioClave">Cambiar Clave</a></li>
-  <li><a routerlink="/seguridad/identificar">Iniciar sesión</a></li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/usuarios">Usuarios</a>
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/seguridad/cerrarSesion">Cerrar sesión</a>
+  </li>
+  <li *ngIf="!seInicioSesion">
+    <a routerLink="/seguridad/identificar">Iniciar sesión</a>
+  </li>
 </ul>
