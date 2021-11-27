@@ -1,0 +1,38 @@
+<a routerLink="/administracion/crear-programas-academicos" class="btn"
+  >Crear programa academico
+</a>
+
+<table class="table responsive">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Nivel de formación</th>
+      <th>Total de creditos</th>
+      <th>Duración</th>
+      <th>Modalidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listadoProgramas">
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.nivelFormacion }}</td>
+      <td>{{ p.totalCreditos }}</td>
+      <td>{{ p.duracion }}</td>
+      <td>{{ p.modalidad }}</td>
+      <td>
+        <a
+          routerLink="/administracion/editar-programas-academicos/{{ p.id }}"
+          class="btn"
+          >Editar</a
+        >
+      </td>
+      <td>
+        <a
+          routerLink="/administracion/eliminar-programas-academicos/{{ p.id }}"
+          class="btn"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>

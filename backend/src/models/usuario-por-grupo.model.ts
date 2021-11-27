@@ -1,5 +1,15 @@
 import {Entity, model, property} from '@loopback/repository';
 
+/* DONE: CAMBIAR LA ESTRUCTURA DE LAS NOTAS ASIGNADA, PORCENTAJE Y CALIFICACIÓN
+ ** SE PUEDE ASIGNAR COMO UN DICCIONARIO DE NOTAS, POR EJEMPLO:
+ ** {"nota1": 0.1 }
+ ** {
+ **   "nota1": number,
+ **   "nota2": number,
+ **   "nota3": number,
+ **   "nota4": number,
+ ** }
+ */
 @model()
 export class UsuarioPorGrupo extends Entity {
   @property({
@@ -10,16 +20,10 @@ export class UsuarioPorGrupo extends Entity {
   id?: string;
 
   @property({
-    type: 'number',
-    required: true,
+    type: 'object',
+    required: false,
   })
-  calificacion: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  porcentaje: number;
+  calificacion: object;
 
   @property({
     type: 'string',
@@ -40,4 +44,5 @@ export interface UsuarioPorGrupoRelations {
   // describe navigational properties here
 }
 
-export type UsuarioPorGrupoWithRelations = UsuarioPorGrupo & UsuarioPorGrupoRelations;
+export type UsuarioPorGrupoWithRelations = UsuarioPorGrupo &
+  UsuarioPorGrupoRelations;

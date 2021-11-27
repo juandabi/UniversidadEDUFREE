@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {/* inject, */ BindingScope, injectable} from '@loopback/core';
 import {repository} from '@loopback/repository';
 import {Llaves} from '../config/llaves';
 import {Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
-const generador = require('password-generator');
+// const generador = require('password-generator');
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
 
@@ -15,21 +16,23 @@ export class AutenticacionService {
     public usuarioRepository: UsuarioRepository,
   ) {}
 
-  GenerarClave() {
-    let clave = generador(12, false);
+  // DONE: QUITAR LA OPCIÓN DE GENERAR CLAVE
+  /* GenerarClave() {
+    const clave = generador(12, false);
     return clave;
-  }
+  } */
 
   CifrarClave(clave: string) {
-    let claveCifrada = CryptoJS.MD5(clave).toString();
+    const claveCifrada = CryptoJS.MD5(clave).toString();
     return claveCifrada;
   }
 
   IdentificarUsuario(correo: string, clave: string) {
     try {
-      let usuarioEncontrado = this.usuarioRepository.findOne({
+      const usuarioEncontrado = this.usuarioRepository.findOne({
         where: {correoElectronico: correo, clave: clave},
       });
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       if (usuarioEncontrado) {
         return usuarioEncontrado;
       }
@@ -40,7 +43,7 @@ export class AutenticacionService {
   }
 
   GenerarTokenJWT(usuario: Usuario) {
-    let token = jwt.sign(
+    const token = jwt.sign(
       {
         data: {
           id: usuario.id,
@@ -57,7 +60,7 @@ export class AutenticacionService {
 
   ValidarTokenJWT(token: string) {
     try {
-      let datos = jwt.verify(token, Llaves.claveJWT);
+      const datos = jwt.verify(token, Llaves.claveJWT);
       return datos;
     } catch {
       return false;

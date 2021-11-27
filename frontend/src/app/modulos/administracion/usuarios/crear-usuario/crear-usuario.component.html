@@ -1,1 +1,90 @@
-<p>crear-usuario works!</p>
+<div class="row">
+  <h3 class="center-align">Crear usuario</h3>
+  <div class="row center">
+    <form
+      [formGroup]="fgValidador"
+      (ngSubmit)="GuardarUsuario()"
+      class="col s12"
+    >
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="nombres"
+            id="nombres"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="nombres">Nombres</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="apellidos"
+            id="apellidos"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="apellidos">Apellidos</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="id"
+            id="documento"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="documento">Documento</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="correo"
+            id="correo"
+            type="email"
+            class="validate"
+            required
+          />
+          <label for="correo">correo electronico</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="perfilId"
+            id="PerfilId"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="PerfilId">Perfil</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="clave"
+            id="clave"
+            type="password"
+            class="validate"
+            required
+          />
+          <label for="clave">Clave</label>
+        </div>
+      </div>
+      <div class="row center">
+        <div class="row input-field col s3">
+          <button
+            [disabled]="!fgValidador.valid"
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            type="submit"
+            name="action"
+          >
+            Registrar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-shadow */
 import {service} from '@loopback/core';
 import {
   Count,
@@ -43,12 +47,12 @@ export class UsuarioController {
     },
   })
   async identificarUsuario(@requestBody() Credenciales: Credenciales) {
-    let p = await this.servicioAutenticacion.IdentificarUsuario(
+    const p = await this.servicioAutenticacion.IdentificarUsuario(
       Credenciales.correo,
       Credenciales.clave,
     );
     if (p) {
-      let token = this.servicioAutenticacion.GenerarTokenJWT(p);
+      const token = this.servicioAutenticacion.GenerarTokenJWT(p);
       return {
         datos: {
           nombres: p.nombres,
@@ -62,6 +66,7 @@ export class UsuarioController {
       throw new HttpErrors[401]('Usuario o contraseña incorrectos');
     }
   }
+  //DONE: CAMBIAR LA OPCIÓN DE GENERAR CLAVE A CREAR LA CLAVE EL PROPIO USUARIO
 
   @post('/usuarios')
   @response(200, {
@@ -74,22 +79,25 @@ export class UsuarioController {
         'application/json': {
           schema: getModelSchemaRef(Usuario, {
             title: 'NewUsuario',
-            exclude: ['clave'],
           }),
         },
       },
     })
     usuario: Usuario,
   ): Promise<Usuario> {
-    let clave = this.servicioAutenticacion.GenerarClave();
-    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    const clave = usuario.clave;
+    const claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+
+    /* DONE: ENCRIPTAR CLAVE
+     ** usuario.clave = claveCifrada
+     */
     usuario.clave = claveCifrada;
-    let p = await this.usuarioRepository.create(usuario);
+    const p = await this.usuarioRepository.create(usuario);
 
     //Notificar al usuario
-    let destino = usuario.correoElectronico;
-    let asunto = 'Registro en la plataforma';
-    let mensaje = `Hora ${usuario.nombres}, su nombre de usuario es: ${usuario.correoElectronico} y su contraseña es: ${clave}`;
+    const destino = usuario.correoElectronico;
+    const asunto = 'Registro en la plataforma';
+    const mensaje = `Hora ${usuario.nombres}, su nombre de usuario es: ${usuario.correoElectronico} y su contraseña es: ${clave}`;
     fetch(
       `${Llaves.urlSerivicioNotificaciones}/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${mensaje}`,
     ).then((data: any) => {
