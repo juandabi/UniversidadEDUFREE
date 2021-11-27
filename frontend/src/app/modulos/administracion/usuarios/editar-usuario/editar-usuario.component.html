@@ -1,1 +1,89 @@
-<p>editar-usuario works!</p>
+<div class="row">
+  <h3 class="center-align">Editar usuario</h3>
+  <div class="row center">
+    <form
+      [formGroup]="fgValidador"
+      (ngSubmit)="EditarUsuario()"
+      class="col s12"
+    >
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="nombres"
+            id="nombres"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="nombres" class="active">Nombres</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="apellidos"
+            id="apellidos"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="apellidos" class="active">Apellidos</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="id"
+            id="documento"
+            type="text"
+            class="validate"
+          />
+          <label for="documento" class="active">Documento</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="correo"
+            id="correo"
+            type="email"
+            class="validate"
+            required
+          />
+          <label for="correo" class="active">correo electronico</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="perfilId"
+            id="PerfilId"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="PerfilId" class="active">Perfil</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="clave"
+            id="clave"
+            type="password"
+            class="validate"
+            required
+          />
+          <label for="clave" class="active">Clave</label>
+        </div>
+      </div>
+      <div class="row center">
+        <div class="row input-field col s4">
+          <button
+            [disabled]="!fgValidador.valid"
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            type="submit"
+            name="action"
+          >
+            Actualizar usuario
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
