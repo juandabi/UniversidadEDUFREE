@@ -24,10 +24,12 @@ export class IdentificacionComponent implements OnInit {
     let correo = this.fgValidador.controls['correo'].value;
     let clave = this.fgValidador.controls['clave'].value;
     let claveCifrada = cryptoJS.MD5(clave).toString();
-    /* TODO: ENVIAR CLAVE ENCRIPTADA
+
+    /* DONE: ENVIAR CLAVE ENCRIPTADA
      ** this.servicioSeguridad.Identificar(correo, claveCifrada)
      */
-    this.servicioSeguridad.Identificar(correo, clave).subscribe({
+
+    this.servicioSeguridad.Identificar(correo, claveCifrada).subscribe({
       next: (datos: any) => {
         //OK
 
@@ -35,7 +37,6 @@ export class IdentificacionComponent implements OnInit {
       },
       error: (error) => {
         //KO
-        alert(clave);
         alert('Usuario no identificado');
       },
     });

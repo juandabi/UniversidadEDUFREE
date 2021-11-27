@@ -4,7 +4,7 @@ import {repository} from '@loopback/repository';
 import {Llaves} from '../config/llaves';
 import {Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
-const generador = require('password-generator');
+// const generador = require('password-generator');
 const CryptoJS = require('crypto-js');
 const jwt = require('jsonwebtoken');
 
@@ -16,12 +16,11 @@ export class AutenticacionService {
     public usuarioRepository: UsuarioRepository,
   ) {}
 
-
-  // TODO: QUITAR LA OPCIÓN DE GENERAR CLAVE
-  GenerarClave() {
+  // DONE: QUITAR LA OPCIÓN DE GENERAR CLAVE
+  /* GenerarClave() {
     const clave = generador(12, false);
     return clave;
-  }
+  } */
 
   CifrarClave(clave: string) {
     const claveCifrada = CryptoJS.MD5(clave).toString();

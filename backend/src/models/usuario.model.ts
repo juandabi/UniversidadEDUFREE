@@ -40,7 +40,7 @@ export class Usuario extends Entity {
   @property({
     type: 'string',
     generated: false,
-    required: false,
+    required: true,
   })
   clave: string;
 

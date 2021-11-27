@@ -66,7 +66,7 @@ export class UsuarioController {
       throw new HttpErrors[401]('Usuario o contraseña incorrectos');
     }
   }
-//TODO: CAMBIAR LA OPCIÓN DE GENERAR CLAVE A CREAR LA CLAVE EL PROPIO USUARIO
+  //DONE: CAMBIAR LA OPCIÓN DE GENERAR CLAVE A CREAR LA CLAVE EL PROPIO USUARIO
 
   @post('/usuarios')
   @response(200, {
@@ -79,20 +79,19 @@ export class UsuarioController {
         'application/json': {
           schema: getModelSchemaRef(Usuario, {
             title: 'NewUsuario',
-            exclude: ['clave'],
           }),
         },
       },
     })
     usuario: Usuario,
   ): Promise<Usuario> {
-    const clave = this.servicioAutenticacion.GenerarClave();
+    const clave = usuario.clave;
     const claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
 
-    /* TODO: ENCRIPTAR CLAVE
+    /* DONE: ENCRIPTAR CLAVE
      ** usuario.clave = claveCifrada
      */
-    usuario.clave = clave;
+    usuario.clave = claveCifrada;
     const p = await this.usuarioRepository.create(usuario);
 
     //Notificar al usuario
