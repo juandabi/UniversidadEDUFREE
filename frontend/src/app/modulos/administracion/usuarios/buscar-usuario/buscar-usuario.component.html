@@ -18,12 +18,14 @@
       <td>{{ p.correoElectronico }}</td>
       <td>{{ p.perfilId }}</td>
       <td>
-        <a routerLink="/administracion/editar-usuario/{{ p.id }}" class="btn"
+        <a routerLink="/administracion/editar-usuarios/{{ p.id }}" class="btn"
           >Editar usuario</a
         >
       </td>
-            <td>
-        <a routerLink="/administracion/eliminar-usuario/{{ p.id }}" class="btn"
+      <td>
+        <a
+          routerLink="/administracion/eliminar-usuarios/{{ p.id }}"
+          class="btn red lighten-1"
           >Eliminar usuario</a
         >
       </td>

@@ -51,6 +51,7 @@ export class ProgramaAcademicoService {
       }
     );
   }
+
   EliminarPrograma(id: string): Observable<any> {
     return this.http.delete<ModeloPrograma>(
       `${this.url}/programas-academicos/${id}`,

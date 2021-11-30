@@ -14,6 +14,9 @@
         >
       </li>
       <li *ngIf="seInicioSesion">
+        <a routerLink="/administracion/listar-perfiles">Perfiles</a>
+      </li>
+      <li *ngIf="seInicioSesion">
         <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>
       </li>
       <li *ngIf="seInicioSesion">
@@ -34,6 +37,9 @@
     <a routerLink="/administracion/listar-programas-academicos"
       >Programas academicos</a
     >
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/listar-perfiles">Perfiles</a>
   </li>
   <li *ngIf="seInicioSesion">
     <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>

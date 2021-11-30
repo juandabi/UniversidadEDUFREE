@@ -1,0 +1,30 @@
+<a routerLink="/administracion/crear-perfiles" class="btn">Crear perfil </a>
+
+<table class="table responsive">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listadoPerfiles">
+      <td>{{ p.id }}</td>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.descripcion }}</td>
+      <td>
+        <a routerLink="/administracion/editar-perfiles/{{ p.id }}" class="btn"
+          >Editar<i class="material-icons right">edit</i></a
+        >
+      </td>
+      <td>
+        <a
+          routerLink="/administracion/eliminar-perfiles/{{ p.id }}"
+          class="btn red lighten-1"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>

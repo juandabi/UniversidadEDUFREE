@@ -27,8 +27,8 @@ export class CrearUsuarioComponent implements OnInit {
   ngOnInit(): void {}
 
   GuardarUsuario() {
-    let nombres = this.fgValidador.controls['nombres'].value;
     let id = this.fgValidador.controls['id'].value;
+    let nombres = this.fgValidador.controls['nombres'].value;
     let apellidos = this.fgValidador.controls['apellidos'].value;
     let correo = this.fgValidador.controls['correo'].value;
     let clave = this.fgValidador.controls['clave'].value;

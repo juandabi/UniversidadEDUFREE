@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BuscarPerfilComponent } from './perfil/buscar-perfil/buscar-perfil.component';
+import { CrearPerfilComponent } from './perfil/crear-perfil/crear-perfil.component';
+import { EditarPerfilComponent } from './perfil/editar-perfil/editar-perfil.component';
+import { EliminarPerfilComponent } from './perfil/eliminar-perfil/eliminar-perfil.component';
 import { BuscarProgramaAcademicoComponent } from './programas-academicos/buscar-programa-academico/buscar-programa-academico.component';
 import { CrearProgramaAcademicoComponent } from './programas-academicos/crear-programa-academico/crear-programa-academico.component';
 import { EditarProgramaAcademicoComponent } from './programas-academicos/editar-programa-academico/editar-programa-academico.component';
@@ -12,19 +16,19 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
 const routes: Routes = [
   // USUARIOS
   {
-    path: 'crear-usuario',
+    path: 'crear-usuarios',
     component: CrearUsuarioComponent,
   },
   {
-    path: 'editar-usuario/:id',
+    path: 'editar-usuarios/:id',
     component: EditarUsuarioComponent,
   },
   {
-    path: 'eliminar-usuario/:id',
+    path: 'eliminar-usuarios/:id',
     component: EliminarUsuarioComponent,
   },
   {
-    path: 'buscar-usuario',
+    path: 'buscar-usuarios',
     component: BuscarUsuarioComponent,
   },
   {
@@ -52,6 +56,28 @@ const routes: Routes = [
   {
     path: 'editar-programas-academicos/:id',
     component: EditarProgramaAcademicoComponent,
+  },
+
+  // PERFILES
+  {
+    path: 'listar-perfiles',
+    component: BuscarPerfilComponent,
+  },
+  {
+    path: 'buscar-perfiles',
+    component: BuscarPerfilComponent,
+  },
+  {
+    path: 'crear-perfiles',
+    component: CrearPerfilComponent,
+  },
+  {
+    path: 'eliminar-perfiles/:id',
+    component: EliminarPerfilComponent,
+  },
+  {
+    path: 'editar-perfiles/:id',
+    component: EditarPerfilComponent,
   },
 ];
 

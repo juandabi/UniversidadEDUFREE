@@ -10,6 +10,10 @@ import { BuscarProgramaAcademicoComponent } from './programas-academicos/buscar-
 import { CrearProgramaAcademicoComponent } from './programas-academicos/crear-programa-academico/crear-programa-academico.component';
 import { EliminarProgramaAcademicoComponent } from './programas-academicos/eliminar-programa-academico/eliminar-programa-academico.component';
 import { EditarProgramaAcademicoComponent } from './programas-academicos/editar-programa-academico/editar-programa-academico.component';
+import { CrearPerfilComponent } from './perfil/crear-perfil/crear-perfil.component';
+import { BuscarPerfilComponent } from './perfil/buscar-perfil/buscar-perfil.component';
+import { EditarPerfilComponent } from './perfil/editar-perfil/editar-perfil.component';
+import { EliminarPerfilComponent } from './perfil/eliminar-perfil/eliminar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { EditarProgramaAcademicoComponent } from './programas-academicos/editar-
     CrearProgramaAcademicoComponent,
     EliminarProgramaAcademicoComponent,
     EditarProgramaAcademicoComponent,
+    CrearPerfilComponent,
+    BuscarPerfilComponent,
+    EditarPerfilComponent,
+    EliminarPerfilComponent,
   ],
   imports: [
     CommonModule,
