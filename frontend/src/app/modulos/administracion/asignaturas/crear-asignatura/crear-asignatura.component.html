@@ -1,1 +1,58 @@
-<p>crear-asignatura works!</p>
+<div class="row">
+  <h3 class="center-align">Crear asignatura</h3>
+  <div class="row center">
+    <form
+      [formGroup]="fgValidador"
+      (ngSubmit)="GuardarAsignatura()"
+      class="col s12"
+    >
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="nombre"
+            id="nombre"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="creditos"
+            id="creditos"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="creditos">Creditos</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="programaAcademicoId"
+            id="programaAcademicoId"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="programaAcademicoId">Programa academico</label>
+        </div>
+      </div>
+      <div class="row center">
+        <div class="row input-field col s3">
+          <button
+            [disabled]="!fgValidador.valid"
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            type="submit"
+            name="action"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
