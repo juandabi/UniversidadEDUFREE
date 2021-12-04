@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BuscarAsignaturaComponent } from './asignaturas/buscar-asignatura/buscar-asignatura.component';
+import { CrearAsignaturaComponent } from './asignaturas/crear-asignatura/crear-asignatura.component';
+import { EditarAsignaturaComponent } from './asignaturas/editar-asignatura/editar-asignatura.component';
+import { EliminarAsignaturaComponent } from './asignaturas/eliminar-asignatura/eliminar-asignatura.component';
 import { BuscarPerfilComponent } from './perfil/buscar-perfil/buscar-perfil.component';
 import { CrearPerfilComponent } from './perfil/crear-perfil/crear-perfil.component';
 import { EditarPerfilComponent } from './perfil/editar-perfil/editar-perfil.component';
@@ -78,6 +82,29 @@ const routes: Routes = [
   {
     path: 'editar-perfiles/:id',
     component: EditarPerfilComponent,
+  },
+
+  // ASIGNATURAS
+
+  {
+    path: 'listar-asignaturas',
+    component: BuscarAsignaturaComponent,
+  },
+  {
+    path: 'buscar-asignaturas',
+    component: BuscarAsignaturaComponent,
+  },
+  {
+    path: 'crear-asignaturas',
+    component: CrearAsignaturaComponent,
+  },
+  {
+    path: 'eliminar-asignaturas/:id',
+    component: EliminarAsignaturaComponent,
+  },
+  {
+    path: 'editar-asignaturas/:id',
+    component: EditarAsignaturaComponent,
   },
 ];
 

@@ -1,0 +1,37 @@
+<a routerLink="/administracion/crear-asignaturas" class="btn"
+  >Crear asignatura
+</a>
+
+<table class="table responsive">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nombre</th>
+      <th>Creditos</th>
+      <th>Programa academico</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listadoAsignaturas">
+      <td>{{ p.id }}</td>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.creditos }}</td>
+      <td>{{ p.programaAcademicoId }}</td>
+
+      <td>
+        <a
+          routerLink="/administracion/editar-asignaturas/{{ p.id }}"
+          class="btn"
+          >Editar</a
+        >
+      </td>
+      <td>
+        <a
+          routerLink="/administracion/eliminar-asignaturas/{{ p.id }}"
+          class="btn red lighten-1"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
