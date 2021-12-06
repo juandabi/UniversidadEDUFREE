@@ -12,14 +12,8 @@ import {Usuario} from './usuario.model';
 // DONE: CREAR EL ATRIBUTO DE DOCENTE ASIGNADO AL GRUPO
 
 /* DONE: CAMBIAR LA ESTRUCTURA DE LAS NOTAS ASIGNADA, PORCENTAJE Y CALIFICACIÓN
- ** SE PUEDE ASIGNAR COMO UN DICCIONARIO DE NOTAS, POR EJEMPLO:
- ** {"nota1": { "Nombre": "resumen pelicula", "Porcentaje": 0.1 }}
- ** {
- **   "nota1": {string , number},
- **   "nota2": {string , number},
- **   "nota3": {string , number},
- **   "nota4": {string , number},
- ** }
+ ** SE PUEDE ASIGNAR COMO UN ARRAY DE OBJETOS, DONDE EL INDEX DEL ARRAY UBICA EL NUMERO DE LA NOTA, Y EL OBJETO TIENE EL NOMBRE DE LA ACTIVIDAD Y SU PORCENTAJE. POR EJEMPLO:
+ ** [{'RESUMEN PELICULA': 0.2},{'PARCIAL 1': 0.3}]
  */
 
 @model()
@@ -44,16 +38,22 @@ export class Grupo extends Entity {
   docenteId: string;
 
   @property({
-    type: 'object',
+    type: 'array',
+    itemType: 'object',
     required: true,
   })
-  horario: object;
+  horario: object[];
+  // HORARIO: [{'dia': [horaInicio, duracion]}] HORA MILITAR
+  // HORARIO: [{'Lunes': [10, 2]}]
 
   @property({
-    type: 'object',
+    type: 'array',
+    itemType: 'object',
     required: false,
   })
-  actividades: object;
+  actividades: object[];
+  //[{'nombre nota 1': porcentaje},{'nombre nota 2': porcentaje}]
+  // [{'RESUMEN PELICULA': 0.2},{'PARCIAL 1': 0.3}]
 
   @belongsTo(() => Asignatura)
   asignaturaId: string;

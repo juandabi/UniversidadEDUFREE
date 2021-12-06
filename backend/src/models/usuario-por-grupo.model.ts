@@ -1,15 +1,10 @@
 import {Entity, model, property} from '@loopback/repository';
 
 /* DONE: CAMBIAR LA ESTRUCTURA DE LAS NOTAS ASIGNADA, PORCENTAJE Y CALIFICACIÓN
- ** SE PUEDE ASIGNAR COMO UN DICCIONARIO DE NOTAS, POR EJEMPLO:
- ** {"nota1": 0.1 }
- ** {
- **   "nota1": number,
- **   "nota2": number,
- **   "nota3": number,
- **   "nota4": number,
- ** }
+ ** SE PUEDE ASIGNAR COMO UN ARRAY, DONDE EL INDEX DEL ARRAY ES LA UBICACIÓN CON EL ARRAY DEL GRUPO, DONDE SE ESPECIFICA LA ACTIVIDAD,  POR EJEMPLO:
+ ** [1.5,2,5,4]
  */
+
 @model()
 export class UsuarioPorGrupo extends Entity {
   @property({
@@ -20,10 +15,12 @@ export class UsuarioPorGrupo extends Entity {
   id?: string;
 
   @property({
-    type: 'object',
+    type: 'array',
+    itemType: 'number',
     required: false,
   })
-  calificacion: object;
+  calificacion: number[];
+  // calificación = [1,2,3,4,5] NOTA DE 0 A 5
 
   @property({
     type: 'string',
