@@ -16,6 +16,10 @@ import { BuscarProgramaAcademicoComponent } from './programas-academicos/buscar-
 import { CrearProgramaAcademicoComponent } from './programas-academicos/crear-programa-academico/crear-programa-academico.component';
 import { EditarProgramaAcademicoComponent } from './programas-academicos/editar-programa-academico/editar-programa-academico.component';
 import { EliminarProgramaAcademicoComponent } from './programas-academicos/eliminar-programa-academico/eliminar-programa-academico.component';
+import { BuscarUsuarioPorGrupoComponent } from './usuario-por-grupo/buscar-usuario-por-grupo/buscar-usuario-por-grupo.component';
+import { CrearUsuarioPorGrupoComponent } from './usuario-por-grupo/crear-usuario-por-grupo/crear-usuario-por-grupo.component';
+import { EditarUsuarioPorGrupoComponent } from './usuario-por-grupo/editar-usuario-por-grupo/editar-usuario-por-grupo.component';
+import { EliminarUsuarioPorGrupoComponent } from './usuario-por-grupo/eliminar-usuario-por-grupo/eliminar-usuario-por-grupo.component';
 import { BuscarUsuarioComponent } from './usuarios/buscar-usuario/buscar-usuario.component';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
@@ -131,6 +135,28 @@ const routes: Routes = [
   {
     path: 'eliminar-grupos/:id',
     component: EliminarGrupoComponent,
+  },
+
+  // USUARIOS POR GRUPO
+  {
+    path: 'listar-usuarios-por-grupo',
+    component: BuscarUsuarioPorGrupoComponent,
+  },
+  {
+    path: 'buscar-usuarios-por-grupo',
+    component: BuscarUsuarioPorGrupoComponent,
+  },
+  {
+    path: 'crear-usuarios-por-grupo',
+    component: CrearUsuarioPorGrupoComponent,
+  },
+  {
+    path: 'editar-usuarios-por-grupo/:id',
+    component: EditarUsuarioPorGrupoComponent,
+  },
+  {
+    path: 'eliminar-usuarios-por-grupo/:id',
+    component: EliminarUsuarioPorGrupoComponent,
   },
 ];
 

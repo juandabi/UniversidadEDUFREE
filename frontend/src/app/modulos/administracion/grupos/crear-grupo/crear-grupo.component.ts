@@ -19,7 +19,7 @@ export class CrearGrupoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private grupoService: GrupoService,
+    private sevicioGrupo: GrupoService,
     private router: Router
   ) {}
 
@@ -36,7 +36,7 @@ export class CrearGrupoComponent implements OnInit {
     p.docenteId = docenteId;
     p.horario = horario;
     p.asignaturaId = asignaturaId;
-    this.grupoService.CrearGrupo(p).subscribe({
+    this.sevicioGrupo.CrearGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
         alert('Grupo creada con exito');
         this.router.navigate(['/administracion/listar-grupos']);

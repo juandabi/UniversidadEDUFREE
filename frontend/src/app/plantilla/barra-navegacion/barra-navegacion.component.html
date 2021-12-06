@@ -12,6 +12,11 @@
         <a routerLink="/administracion/listar-grupos">Grupos</a>
       </li>
       <li *ngIf="seInicioSesion">
+        <a routerLink="/administracion/listar-usuarios-por-grupo"
+          >Usuario por grupos</a
+        >
+      </li>
+      <li *ngIf="seInicioSesion">
         <a routerLink="/administracion/listar-asignaturas">asignaturas</a>
       </li>
       <li *ngIf="seInicioSesion">

@@ -1,0 +1,36 @@
+<a routerLink="/administracion/crear-usuarios-por-grupo" class="btn"
+  >Crear Usuario por grupo
+</a>
+
+<table class="table responsive">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Grupo</th>
+      <th>Usuario</th>
+      <th>Calificación</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listadoUsuariosPorGrupos">
+      <td>{{ p.id }}</td>
+      <td>{{ p.grupoId }}</td>
+      <td>{{ p.usuarioId }}</td>
+      <td>{{ p.calificacion }}</td>
+      <td>
+        <a
+          routerLink="/administracion/editar-usuarios-por-grupo/{{ p.id }}"
+          class="btn"
+          >Editar</a
+        >
+      </td>
+      <td>
+        <a
+          routerLink="/administracion/eliminar-usuarios-por-grupo/{{ p.id }}"
+          class="btn red lighten-1"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>

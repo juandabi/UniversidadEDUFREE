@@ -19,7 +19,7 @@ export class EditarGrupoComponent implements OnInit {
   });
   constructor(
     private fb: FormBuilder,
-    private GrupoService: GrupoService,
+    private servicioGrupo: GrupoService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -30,7 +30,7 @@ export class EditarGrupoComponent implements OnInit {
   }
 
   BuscarGrupo() {
-    this.GrupoService.ObtenerGrupoPorId(this.id).subscribe({
+    this.servicioGrupo.ObtenerGrupoPorId(this.id).subscribe({
       next: (datos: ModeloGrupo) => {
         this.fgValidador.controls['id'].setValue(this.id);
         this.fgValidador.controls['nombre'].setValue(datos.nombre);
@@ -53,7 +53,7 @@ export class EditarGrupoComponent implements OnInit {
     p.docenteId = docenteId;
     p.horario = horario;
     p.asignaturaId = asignaturaId;
-    this.GrupoService.ActualizarGrupo(p).subscribe({
+    this.servicioGrupo.ActualizarGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
         alert('Grupo Actualizado');
         this.router.navigate(['/administracion/listar-grupos']);
