@@ -6,6 +6,10 @@ import { BuscarAsignaturaComponent } from './asignaturas/buscar-asignatura/busca
 import { CrearAsignaturaComponent } from './asignaturas/crear-asignatura/crear-asignatura.component';
 import { EditarAsignaturaComponent } from './asignaturas/editar-asignatura/editar-asignatura.component';
 import { EliminarAsignaturaComponent } from './asignaturas/eliminar-asignatura/eliminar-asignatura.component';
+import { BuscarGrupoComponent } from './grupos/buscar-grupo/buscar-grupo.component';
+import { CrearGrupoComponent } from './grupos/crear-grupo/crear-grupo.component';
+import { EditarGrupoComponent } from './grupos/editar-grupo/editar-grupo.component';
+import { EliminarGrupoComponent } from './grupos/eliminar-grupo/eliminar-grupo.component';
 import { BuscarPerfilComponent } from './perfil/buscar-perfil/buscar-perfil.component';
 import { CrearPerfilComponent } from './perfil/crear-perfil/crear-perfil.component';
 import { EditarPerfilComponent } from './perfil/editar-perfil/editar-perfil.component';
@@ -37,6 +41,10 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     CrearAsignaturaComponent,
     EditarAsignaturaComponent,
     EliminarAsignaturaComponent,
+    CrearGrupoComponent,
+    EditarGrupoComponent,
+    BuscarGrupoComponent,
+    EliminarGrupoComponent,
   ],
   imports: [
     CommonModule,

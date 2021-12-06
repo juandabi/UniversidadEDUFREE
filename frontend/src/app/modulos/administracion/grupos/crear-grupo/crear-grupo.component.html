@@ -1,0 +1,64 @@
+<div class="row">
+  <h3 class="center-align">Crear grupo</h3>
+  <div class="row center">
+    <form [formGroup]="fgValidador" (ngSubmit)="GuardarGrupo()" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="nombre"
+            id="nombre"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="asignaturaId"
+            id="asignaturaId"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="asignaturaId">asignatura</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="docenteId"
+            id="docenteId"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="docenteId">docente</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="horario"
+            id="horario"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="horario">horario</label>
+        </div>
+      </div>
+      <div class="row center">
+        <div class="row input-field col s3">
+          <button
+            [disabled]="!fgValidador.valid"
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            type="submit"
+            name="action"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
