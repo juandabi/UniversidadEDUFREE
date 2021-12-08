@@ -1,3 +1,7 @@
+.//TODO: ORGANIZAR LOS MENUS DESPLEGLABLES
+
+
+
 <nav>
   <div class="nav-wrapper blue darken-3">
     <a routerlink="/inicio" class="brand-logo">Universidad EDUFREE</a>
@@ -43,6 +47,17 @@
 <ul class="sidenav" id="mobile-demo">
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-usuarios">Usuarios</a>
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/listar-grupos">Grupos</a>
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/listar-usuarios-por-grupo"
+      >Usuario por grupos</a
+    >
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/listar-asignaturas">asignaturas</a>
   </li>
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-programas-academicos"

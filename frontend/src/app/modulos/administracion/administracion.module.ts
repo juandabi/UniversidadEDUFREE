@@ -1,6 +1,9 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { filterPipe } from 'src/app/pipes/filter.pipe';
+import { FiltroUsuarioPipe } from 'src/app/pipes/filtro-usuario.pipe';
 import { AdministracionRoutingModule } from './administracion-routing.module';
 import { BuscarAsignaturaComponent } from './asignaturas/buscar-asignatura/buscar-asignatura.component';
 import { CrearAsignaturaComponent } from './asignaturas/crear-asignatura/crear-asignatura.component';
@@ -53,12 +56,15 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     CrearUsuarioPorGrupoComponent,
     EditarUsuarioPorGrupoComponent,
     EliminarUsuarioPorGrupoComponent,
+    filterPipe,
+    FiltroUsuarioPipe,
   ],
   imports: [
     CommonModule,
     AdministracionRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ScrollingModule,
   ],
 })
 export class AdministracionModule {}

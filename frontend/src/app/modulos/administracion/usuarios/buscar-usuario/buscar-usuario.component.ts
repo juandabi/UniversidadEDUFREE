@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   styleUrls: ['./buscar-usuario.component.css'],
 })
 export class BuscarUsuarioComponent implements OnInit {
+  filtroUsuario = [];
   listadoUsuarios: ModeloUsuario[] = [];
   constructor(private usuarioServicio: UsuarioService) {}
 
