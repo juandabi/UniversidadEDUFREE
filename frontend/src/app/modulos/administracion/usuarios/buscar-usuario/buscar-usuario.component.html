@@ -14,26 +14,26 @@
 <a routerLink="/administracion/crear-usuarios" class="btn">Crear usuario </a>
 
 <cdk-virtual-scroll-viewport itemSize="0" style="height: 300px">
-  <table class="table responsive">
+  <table class="table responsive" style="width: 100%">
     <thead>
       <tr>
-        <th>id</th>
+        <th>Documento</th>
         <th>Nombres</th>
         <th>Apellidos</th>
         <th>Correo</th>
-        <th>PerfilId</th>
+        <th>Perfil</th>
       </tr>
     </thead>
     <tbody>
       <ng-container
-        *cdkVirtualFor="let p of listadoUsuarios | filter: filtroUsuario"
+        *cdkVirtualFor="let p of listadoUsuarios | filtroUsuario: filtroUsuario"
       >
         <tr>
           <td>{{ p.id }}</td>
           <td>{{ p.nombres }}</td>
           <td>{{ p.apellidos }}</td>
           <td>{{ p.correoElectronico }}</td>
-          <td>{{ p.perfilId }}</td>
+          <td>{{ p.perfil.nombre }}</td>
           <td>
             <a
               routerLink="/administracion/editar-usuarios/{{ p.id }}"

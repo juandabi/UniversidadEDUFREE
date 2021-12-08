@@ -19,7 +19,9 @@ export class UsuarioService {
   }
 
   ObtenerUsuarios(): Observable<ModeloUsuario[]> {
-    return this.http.get<ModeloUsuario[]>(`${this.url}/usuarios`);
+    return this.http.get<ModeloUsuario[]>(
+      `${this.url}/usuarios?filter[include][]=perfil`
+    );
   }
 
   ObtenerUsuarioPorId(id: string): Observable<ModeloUsuario> {
