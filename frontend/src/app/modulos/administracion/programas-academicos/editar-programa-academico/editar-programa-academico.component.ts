@@ -10,7 +10,24 @@ import { ProgramaAcademicoService } from 'src/app/servicios/programa-academico.s
   styleUrls: ['./editar-programa-academico.component.css'],
 })
 export class EditarProgramaAcademicoComponent implements OnInit {
+  listadoNiveles = [
+    { nombre: 'Tecnólogo' },
+    { nombre: 'Técnico' },
+    { nombre: 'Profesional' },
+    { nombre: 'Licenciatura' },
+    { nombre: 'Especialización' },
+    { nombre: 'Maestria' },
+    { nombre: 'Doctorado' },
+  ];
+
+  listadoModalidades = [
+    { nombre: 'Presencial' },
+    { nombre: 'Virtual' },
+    { nombre: 'Distancia' },
+    { nombre: 'Semipresencial' },
+  ];
   id: string = '';
+
   fgValidador: FormGroup = this.fb.group({
     id: ['', [Validators.required]],
     nombre: ['', [Validators.required]],

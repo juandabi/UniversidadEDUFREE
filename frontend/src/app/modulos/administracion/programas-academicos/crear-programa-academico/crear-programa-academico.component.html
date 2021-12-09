@@ -18,14 +18,21 @@
           <label for="nombre">Nombre</label>
         </div>
         <div class="input-field col s6">
-          <input
+          <select
             formControlName="nivelFormacion"
-            id="nivelFormacion"
-            type="text"
-            class="validate"
+            name="nivelFormacion"
             required
-          />
-          <label for="nivelFormacion">Nivel de formación</label>
+          >
+            <option value="" disabled selected>
+              Seleccionar nivel de formación
+            </option>
+            <option
+              value="{{ nivel.nombre }}"
+              *ngFor="let nivel of listadoNiveles"
+            >
+              {{ nivel.nombre }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row">
@@ -52,14 +59,15 @@
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input
-            formControlName="modalidad"
-            id="modalidad"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="modalidad">Modalidad</label>
+          <select formControlName="modalidad" name="modalidad" required>
+            <option value="" disabled selected>Seleccionar modalidad</option>
+            <option
+              value="{{ modalidad.nombre }}"
+              *ngFor="let modalidad of listadoModalidades"
+            >
+              {{ modalidad.nombre }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row center">

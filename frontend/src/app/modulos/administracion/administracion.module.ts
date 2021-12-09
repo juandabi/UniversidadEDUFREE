@@ -2,6 +2,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { FiltroAsignaturaPipe } from 'src/app/pipes/filtro-asignatura.pipe';
+import { FiltroProgramaPipe } from 'src/app/pipes/filtro-programa.pipe';
 import { FiltroUsuarioPipe } from 'src/app/pipes/filtro-usuario.pipe';
 import { AdministracionRoutingModule } from './administracion-routing.module';
 import { BuscarAsignaturaComponent } from './asignaturas/buscar-asignatura/buscar-asignatura.component';
@@ -28,7 +34,6 @@ import { BuscarUsuarioComponent } from './usuarios/buscar-usuario/buscar-usuario
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './usuarios/editar-usuario/editar-usuario.component';
 import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-usuario.component';
-
 @NgModule({
   declarations: [
     CrearUsuarioComponent,
@@ -56,6 +61,8 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     EditarUsuarioPorGrupoComponent,
     EliminarUsuarioPorGrupoComponent,
     FiltroUsuarioPipe,
+    FiltroProgramaPipe,
+    FiltroAsignaturaPipe,
   ],
   imports: [
     CommonModule,
@@ -63,6 +70,10 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     FormsModule,
     ReactiveFormsModule,
     ScrollingModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
 })
 export class AdministracionModule {}

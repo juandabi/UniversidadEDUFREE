@@ -12,8 +12,28 @@ export class FiltroUsuarioPipe implements PipeTransform {
     if (!arg) {
       return value;
     }
+
     for (const usuario of value) {
       if (usuario.id.indexOf(arg) > -1) {
+        resultadoUsuario.push(usuario);
+      } else if (
+        usuario.nombres.toLowerCase().indexOf(String(arg).toLowerCase()) > -1
+      ) {
+        resultadoUsuario.push(usuario);
+      } else if (
+        usuario.apellidos.toLowerCase().indexOf(String(arg).toLowerCase()) > -1
+      ) {
+        resultadoUsuario.push(usuario);
+      } else if (
+        usuario.correoElectronico
+          .toLowerCase()
+          .indexOf(String(arg).toLowerCase()) > -1
+      ) {
+        resultadoUsuario.push(usuario);
+      } else if (
+        usuario.perfil.nombre.toLowerCase().indexOf(String(arg).toLowerCase()) >
+        -1
+      ) {
         resultadoUsuario.push(usuario);
       }
     }

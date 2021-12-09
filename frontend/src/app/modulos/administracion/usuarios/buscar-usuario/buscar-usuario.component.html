@@ -1,20 +1,27 @@
-<form>
-  <div class="input-field form-group">
+<div class="row valign-wrapper">
+  <div class="col s4 input-field form-group">
     <i class="material-icons prefix">search</i>
     <input
       type="text"
       class="forms-control"
-      placeholder="Buscar por documento"
+      placeholder="Buscar usuario"
       [(ngModel)]="filtroUsuario"
       name="filtroUsuario"
     />
   </div>
-</form>
-
-<a routerLink="/administracion/crear-usuarios" class="btn">Crear usuario </a>
-
-<cdk-virtual-scroll-viewport itemSize="0" style="height: 300px">
-  <table class="table responsive" style="width: 100%">
+  <div class="col s4">
+    <a routerLink="/administracion/crear-usuarios" class="btn"
+      >Crear usuario
+    </a>
+  </div>
+  <div class="col s4 right-align">
+    <a routerLink="/administracion/listar-perfiles" class="btn"
+      >Administrar perfiles
+    </a>
+  </div>
+</div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 300px">
+  <table class="table responsive">
     <thead>
       <tr>
         <th>Documento</th>

@@ -99,6 +99,10 @@ const routes: Routes = [
     component: BuscarAsignaturaComponent,
   },
   {
+    path: 'listar-asignaturas/:programaAcademicoId',
+    component: BuscarAsignaturaComponent,
+  },
+  {
     path: 'buscar-asignaturas',
     component: BuscarAsignaturaComponent,
   },

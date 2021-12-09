@@ -1,38 +1,70 @@
-<a routerLink="/administracion/crear-programas-academicos" class="btn"
-  >Crear programa academico
-</a>
-
-<table class="table responsive">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Nivel de formación</th>
-      <th>Total de creditos</th>
-      <th>Duración</th>
-      <th>Modalidad</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of listadoProgramas">
-      <td>{{ p.nombre }}</td>
-      <td>{{ p.nivelFormacion }}</td>
-      <td>{{ p.totalCreditos }}</td>
-      <td>{{ p.duracion }}</td>
-      <td>{{ p.modalidad }}</td>
-      <td>
-        <a
-          routerLink="/administracion/editar-programas-academicos/{{ p.id }}"
-          class="btn"
-          >Editar</a
-        >
-      </td>
-      <td>
-        <a
-          routerLink="/administracion/eliminar-programas-academicos/{{ p.id }}"
-          class="btn red lighten-1"
-          >Eliminar</a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row valign-wrapper">
+  <div class="col s5 input-field form-group">
+    <i class="material-icons prefix">search</i>
+    <input
+      type="text"
+      class="forms-control"
+      placeholder="Buscar programa"
+      [(ngModel)]="filtroPrograma"
+      name="filtroPrograma"
+    />
+  </div>
+  <div class="col s7 right-align">
+    <a routerLink="/administracion/crear-programas-academicos" class="btn"
+      >Crear programa académico
+    </a>
+  </div>
+</div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 300px">
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nivel de formación</th>
+        <th>Total de creditos</th>
+        <th>Duración</th>
+        <th>Modalidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *cdkVirtualFor="
+          let p of listadoProgramas | filtroPrograma: filtroPrograma
+        "
+      >
+        <tr>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.nivelFormacion }}</td>
+          <td>{{ p.totalCreditos }}</td>
+          <td>{{ p.duracion }}</td>
+          <td>{{ p.modalidad }}</td>
+          <td>
+            <a
+              routerLink="/administracion/listar-asignaturas/{{ p.id }}"
+              class="btn"
+              >Asignaturas</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/editar-programas-academicos/{{
+                p.id
+              }}"
+              class="btn"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/eliminar-programas-academicos/{{
+                p.id
+              }}"
+              class="btn red lighten-1"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</cdk-virtual-scroll-viewport>
