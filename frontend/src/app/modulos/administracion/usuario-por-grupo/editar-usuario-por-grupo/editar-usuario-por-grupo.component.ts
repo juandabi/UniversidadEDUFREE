@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloUsuarioPorGrupo } from 'src/app/modelos/usuarioPorGrupo.modelo';
 import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-usuario-por-grupo',
@@ -55,11 +56,19 @@ export class EditarUsuarioPorGrupoComponent implements OnInit {
     p.calificacion = calificacion;
     this.servicioUsuarioPorGrupo.ActualizarUsuarioPorGrupo(p).subscribe({
       next: (datos: ModeloUsuarioPorGrupo) => {
-        alert('Usuario por grupo actualizado');
+        Swal.fire(
+          'Exito',
+          'El usuario por grupo se ha actualizado correctamente',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-usuarios-por-grupo']);
       },
       error: (error) => {
-        alert('Error al actualizar usuario por grupo');
+        Swal.fire(
+          'Oppss',
+          'Se ha presentado un error al actualizar usuario por grupo',
+          'error'
+        )
       },
     });
   }

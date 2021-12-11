@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloPerfil } from 'src/app/modelos/perfil.modelo';
 import { PerfilService } from 'src/app/servicios/perfil.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -50,11 +51,19 @@ export class EditarPerfilComponent implements OnInit {
     p.descripcion = descripcion;
     this.servicioPerfil.ActualizarPerfil(p).subscribe({
       next: (datos: ModeloPerfil) => {
-        alert('Perfil editado correctamente');
+        Swal.fire(
+          'Exito',
+          'El perfil se ha actualizado correctamente',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-perfiles']);
       },
       error: (error) => {
-        alert('Error al editar el perfil');
+        Swal.fire(
+          'Oppss',
+          'Se ha presentado un error en la actualizacion del perfil',
+          'error'
+        )
       },
     });
   }

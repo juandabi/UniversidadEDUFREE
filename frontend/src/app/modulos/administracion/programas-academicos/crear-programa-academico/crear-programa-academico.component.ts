@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModeloPrograma } from 'src/app/modelos/programa.modelo';
 import { ProgramaAcademicoService } from 'src/app/servicios/programa-academico.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-programa-academico',
@@ -59,11 +60,19 @@ export class CrearProgramaAcademicoComponent implements OnInit {
     p.modalidad = modalidad;
     this.servicioProgramaAcademico.CrearPrograma(p).subscribe({
       next: (datos: ModeloPrograma) => {
-        alert('Programa Académico Creado');
+        Swal.fire(
+          'Exito',
+          'El programa academico se ha creado correctamente',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-programas-academicos']);
       },
       error: (error) => {
-        alert('Error al crear el programa academico');
+        Swal.fire(
+          'Oppss',
+          'Se ha presentado un error en la creacion del programa',
+          'error'
+        )
       },
     });
   }

@@ -5,6 +5,7 @@ import { ModeloPerfil } from 'src/app/modelos/perfil.modelo';
 import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
 import { PerfilService } from 'src/app/servicios/perfil.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -49,12 +50,20 @@ export class CrearUsuarioComponent implements OnInit {
     p.perfilId = perfilId;
     this.servicioUsuario.CrearUsuario(p).subscribe({
       next: (datos: ModeloUsuario) => {
-        alert('Usuario creado correctamente');
+        Swal.fire(
+          'Exito',
+          'El usuario se ha creado correctamente',
+          'success'
+        )
         alert(datos.perfilId);
         this.router.navigate(['/administracion/listar-usuarios']);
       },
       error: (error) => {
-        alert('Error al crear el usuario');
+        Swal.fire(
+          'Oppss',
+          'Se ha presentado un error en la creacion del usuario',
+          'error'
+        )
       },
     });
   }

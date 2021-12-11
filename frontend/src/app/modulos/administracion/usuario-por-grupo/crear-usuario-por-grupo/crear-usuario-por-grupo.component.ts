@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModeloUsuarioPorGrupo } from 'src/app/modelos/usuarioPorGrupo.modelo';
 import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-usuario-por-grupo',
@@ -34,11 +35,19 @@ export class CrearUsuarioPorGrupoComponent implements OnInit {
     p.calificacion = calificacion;
     this.servicioUsuarioPorGrupo.CrearUsuarioPorGrupo(p).subscribe({
       next: (datos: ModeloUsuarioPorGrupo) => {
-        alert('UsuarioPorGrupo creado exitosamente');
+        Swal.fire(
+          'Exito',
+          'El usuario por grupo se ha creado de manera correcta',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-usuarios-por-grupo']);
       },
       error: (error) => {
-        alert('Error al crear UsuarioPorGrupo');
+        Swal.fire(
+          'Oppss',
+          'Se ha oresentado un error en la creacion de usuario por grupo',
+          'error'
+        )
       },
     });
   }

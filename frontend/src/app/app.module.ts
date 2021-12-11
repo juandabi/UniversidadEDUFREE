@@ -10,6 +10,7 @@ import { BarraNavegacionComponent } from './plantilla/barra-navegacion/barra-nav
 import { ErrorComponent } from './plantilla/error/error.component';
 import { InicioComponent } from './plantilla/inicio/inicio.component';
 import { PiePaginaComponent } from './plantilla/pie-pagina/pie-pagina.component';
+import { SidebarComponent } from './plantilla/sidebar/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PiePaginaComponent } from './plantilla/pie-pagina/pie-pagina.component'
     PiePaginaComponent,
     InicioComponent,
     ErrorComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,29 @@
 <p>cambio-clave works!</p>
+    <div class="row center">
+        <form class="col s4"
+        (ngSubmit)="cambioClave()"
+        >
+                
+                <h3 class="center-align">Asignar nueva clave</h3>
+
+                <div class="input-field row s6">
+                    <input formControlName="id" id="id"  class="validate" required />
+                    <label for="id" class="active">identificacion</label>
+                </div>
+
+                <div class="input-field row s6">
+                    <input formControlName="clave" id="clave" type="password" class="validate" required />
+                    <label for="clave" class="active">Clave</label>
+                </div>
+
+
+                
+                    <div class="row input-field col center">
+                        <button href="#" class="btn waves-effect waves-light col s12" type="submit" name="action">
+                            Cambiar Clave
+                        </button>
+                    
+                </div>
+
+        </form>
+    </div>

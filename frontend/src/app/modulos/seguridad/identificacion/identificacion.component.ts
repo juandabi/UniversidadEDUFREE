@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as cryptoJS from 'crypto-js';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-identificacion',
   templateUrl: './identificacion.component.html',
@@ -36,12 +37,18 @@ export class IdentificacionComponent implements OnInit {
         //OK
         this.servicioSeguridad.AlmacenarSesion(datos);
         this.router.navigate(['/inicio']);
-        alert('Usuario identificado');
+        Swal.fire(
+          'Exito',
+          'El usuario ha sido indentificado',
+          'success')
         // this.servicioSeguridad.AlmacenarSesion(datos);
       },
       error: (error) => {
         //KO
-        alert('Usuario no identificado');
+        Swal.fire(
+          'Ohpps',
+          'No se puede identificar el usuario',
+          'error')
       },
     });
   }

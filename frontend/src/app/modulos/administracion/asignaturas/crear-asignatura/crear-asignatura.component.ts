@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModeloAsignatura } from 'src/app/modelos/asignatura.modelo';
 import { AsignaturaService } from 'src/app/servicios/asignatura.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-asignatura',
@@ -35,11 +36,18 @@ export class CrearAsignaturaComponent implements OnInit {
     p.programaAcademicoId = programaAcademicoId;
     this.asignaturaService.crearAsignatura(p).subscribe({
       next: (datos: ModeloAsignatura) => {
-        alert('Asignatura creada con exito');
+        Swal.fire(
+          'Exito',
+          'La asignatura se ha creado correctamente',
+          'success')
+
         this.router.navigate(['/administracion/listar-asignaturas']);
       },
       error: (error) => {
-        alert('Error al crear la asignatura');
+        Swal.fire(
+          'Ohpps',
+          'Se ha presentado un error crear la asignatura',
+          'error'  )
       },
     });
   }

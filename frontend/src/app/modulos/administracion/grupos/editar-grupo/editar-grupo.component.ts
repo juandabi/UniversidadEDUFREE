@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloGrupo } from 'src/app/modelos/grupo.modelo';
 import { GrupoService } from 'src/app/servicios/grupo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-grupo',
@@ -55,11 +56,17 @@ export class EditarGrupoComponent implements OnInit {
     p.asignaturaId = asignaturaId;
     this.servicioGrupo.ActualizarGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
-        alert('Grupo Actualizado');
+        Swal.fire(
+          'Exito',
+          'El grupo se ha actualizado de manera exitosa',
+          'success'  )
         this.router.navigate(['/administracion/listar-grupos']);
       },
       error: (error) => {
-        alert('Error al actualizar');
+        Swal.fire(
+          'Ohpps',
+          'Se ha presentado un error en la actualizacion del grupo',
+          'error'  )
       },
     });
   }

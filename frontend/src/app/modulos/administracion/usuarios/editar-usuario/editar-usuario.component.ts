@@ -5,6 +5,7 @@ import { ModeloPerfil } from 'src/app/modelos/perfil.modelo';
 import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
 import { PerfilService } from 'src/app/servicios/perfil.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -66,11 +67,19 @@ export class EditarUsuarioComponent implements OnInit {
     p.perfilId = perfilId;
     this.servicioUsuario.ActualizarUsuario(p).subscribe({
       next: (datos: ModeloUsuario) => {
-        alert('Usuario actualizado correctamente');
+        Swal.fire(
+          'Exito',
+          'El usuario se ha actualizado de manera correcta',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-usuarios']);
       },
       error: (error) => {
-        alert('Error al actualizar el usuario');
+        Swal.fire(
+          'Oppss',
+          'Se ha presentado un error en la actualizacion del usuario',
+          'error'
+        )
       },
     });
   }

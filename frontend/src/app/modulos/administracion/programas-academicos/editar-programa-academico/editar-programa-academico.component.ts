@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloPrograma } from 'src/app/modelos/programa.modelo';
 import { ProgramaAcademicoService } from 'src/app/servicios/programa-academico.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-programa-academico',
@@ -81,11 +82,18 @@ export class EditarProgramaAcademicoComponent implements OnInit {
     p.modalidad = modalidad;
     this.servicioProgramaAcademico.ActualizarPrograma(p).subscribe({
       next: (datos: ModeloPrograma) => {
-        alert('Programa Actualizado');
+        Swal.fire(
+          'Exito',
+          'El programa academico se ha actualizado correctamente',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-programas-academicos']);
       },
-      error: (error) => {
-        alert('Error al Actualizar');
+      error: (error) => {Swal.fire(
+        'Oppss',
+        'Se ha presentado un error en la eliminacion del programa',
+        'error'
+      )
       },
     });
   }

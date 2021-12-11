@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModeloGrupo } from 'src/app/modelos/grupo.modelo';
 import { GrupoService } from 'src/app/servicios/grupo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-grupo',
@@ -38,11 +39,17 @@ export class CrearGrupoComponent implements OnInit {
     p.asignaturaId = asignaturaId;
     this.sevicioGrupo.CrearGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
-        alert('Grupo creada con exito');
+        Swal.fire(
+          'Exito',
+          'El grupo se ha generado de manera exitosa',
+          'success'  )
         this.router.navigate(['/administracion/listar-grupos']);
       },
       error: (error) => {
-        alert('Error al crear la grupo');
+        Swal.fire(
+          'Ohpps',
+          'Se ha presentado un error en la creacion del grupo',
+          'error'  )
       },
     });
   }

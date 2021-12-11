@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModeloPerfil } from 'src/app/modelos/perfil.modelo';
 import { PerfilService } from 'src/app/servicios/perfil.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-perfil',
@@ -34,11 +35,19 @@ export class CrearPerfilComponent implements OnInit {
     p.descripcion = descripcion;
     this.servicioPerfil.CrearPerfil(p).subscribe({
       next: (datos: ModeloPerfil) => {
-        alert('Perfil creado con exito');
+        Swal.fire(
+          'Exito',
+          'El perfil se ha creado correctamente',
+          'success'
+        )
         this.router.navigate(['/administracion/listar-perfiles']);
       },
       error: (error) => {
-        alert('Error al crear perfil');
+        Swal.fire(
+          'Oppss',
+          'Se ha presentado un error en la creacion del perfil',
+          'error'
+        )
       },
     });
   }

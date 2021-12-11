@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloAsignatura } from 'src/app/modelos/asignatura.modelo';
 import { AsignaturaService } from 'src/app/servicios/asignatura.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-asignatura',
@@ -56,11 +57,17 @@ export class EditarAsignaturaComponent implements OnInit {
     p.programaAcademicoId = programaAcademicoId;
     this.servicioAsignatura.ActualizarAsignatura(p).subscribe({
       next: (datos: ModeloAsignatura) => {
-        alert('Asignatura actualizada correctamente');
+        Swal.fire(
+          'Exito',
+          'La asignatura se ha actualizado correctamente',
+          'success'  )
         this.router.navigate(['/administracion/listar-asignaturas']);
       },
       error: (error) => {
-        alert('Error al actualizar la asignatura');
+        Swal.fire(
+          'Ohpps',
+          'Se ha presentado un error en la edicion de ¡ asignatura !',
+          'error'  )
       },
     });
   }
