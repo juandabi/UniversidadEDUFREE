@@ -1,12 +1,17 @@
 <nav>
-  <div class="nav-wrapper">
-    <a routerlink="/inicio" class="brand-logo">Logo</a>
+  <div class="nav-wrapper blue darken-3">
+    <a routerlink="/inicio" class="brand-logo">Universidad EDUFREE</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"
       ><i class="material-icons">menu</i></a
     >
     <ul class="right hide-on-med-and-down">
       <li *ngIf="seInicioSesion">
         <a routerLink="/administracion/listar-usuarios">Usuarios</a>
+      </li>
+      <li *ngIf="seInicioSesion">
+        <a routerLink="/administracion/listar-usuarios-por-grupo"
+          >Usuario por grupos</a
+        >
       </li>
       <li *ngIf="seInicioSesion">
         <a routerLink="/administracion/listar-programas-academicos"
@@ -29,6 +34,11 @@
 <ul class="sidenav" id="mobile-demo">
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-usuarios">Usuarios</a>
+  </li>
+  <li *ngIf="seInicioSesion">
+    <a routerLink="/administracion/listar-usuarios-por-grupo"
+      >Usuario por grupos</a
+    >
   </li>
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-programas-academicos"

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModeloPerfil } from 'src/app/modelos/perfil.modelo';
 import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
+import { PerfilService } from 'src/app/servicios/perfil.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
@@ -10,6 +12,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   styleUrls: ['./editar-usuario.component.css'],
 })
 export class EditarUsuarioComponent implements OnInit {
+  listadoPerfiles: ModeloPerfil[] = [];
   id: string = '';
   fgValidador: FormGroup = this.fb.group({
     id: ['', [Validators.required]],
@@ -23,10 +26,12 @@ export class EditarUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private servicioUsuario: UsuarioService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private perfilServicio: PerfilService
   ) {}
 
   ngOnInit(): void {
+    this.ObtenerPerfiles();
     this.id = this.route.snapshot.params['id'];
     this.BuscarUsuario();
   }
@@ -67,6 +72,11 @@ export class EditarUsuarioComponent implements OnInit {
       error: (error) => {
         alert('Error al actualizar el usuario');
       },
+    });
+  }
+  ObtenerPerfiles() {
+    this.perfilServicio.ObtenerPerfiles().subscribe((datos: ModeloPerfil[]) => {
+      this.listadoPerfiles = datos;
     });
   }
 }

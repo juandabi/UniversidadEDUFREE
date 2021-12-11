@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModeloIdentificar } from 'src/app/modelos/identificar.modelo';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
+declare var M: any;
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -19,5 +20,13 @@ export class BarraNavegacionComponent implements OnInit {
       .subscribe((datos: ModeloIdentificar) => {
         this.seInicioSesion = datos.estaIdentificado;
       });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var options = {
+        edge: 'right',
+      };
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, options);
+    });
   }
 }

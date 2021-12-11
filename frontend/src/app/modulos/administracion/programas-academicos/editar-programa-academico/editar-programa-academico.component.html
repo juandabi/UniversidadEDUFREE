@@ -1,5 +1,5 @@
 <div class="row">
-  <h3 class="center-align">Crear programa academico</h3>
+  <h3 class="center-align">Editar programa academico</h3>
   <div class="row center">
     <form
       [formGroup]="fgValidador"
@@ -15,17 +15,24 @@
             class="validate"
             required
           />
-          <label for="nombre">Nombre</label>
+          <label for="nombre" class="active">Nombre</label>
         </div>
         <div class="input-field col s6">
-          <input
+          <select
             formControlName="nivelFormacion"
-            id="nivelFormacion"
-            type="text"
-            class="validate"
+            name="nivelFormacion"
             required
-          />
-          <label for="nivelFormacion">Nivel de formación</label>
+          >
+            <option value="" disabled selected>
+              Seleccionar nivel de formación
+            </option>
+            <option
+              value="{{ nivel.nombre }}"
+              *ngFor="let nivel of listadoNiveles"
+            >
+              {{ nivel.nombre }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row">
@@ -37,7 +44,7 @@
             class="validate"
             required
           />
-          <label for="totalCreditos">Total de creditos</label>
+          <label for="totalCreditos" class="active">Total de creditos</label>
         </div>
         <div class="input-field col s6">
           <input
@@ -47,19 +54,20 @@
             class="validate"
             required
           />
-          <label for="duracion">Duración</label>
+          <label for="duracion" class="active">Duración</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input
-            formControlName="modalidad"
-            id="modalidad"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="modalidad">Modalidad</label>
+          <select formControlName="modalidad" name="modalidad" required>
+            <option value="" disabled selected>Seleccionar modalidad</option>
+            <option
+              value="{{ modalidad.nombre }}"
+              *ngFor="let modalidad of listadoModalidades"
+            >
+              {{ modalidad.nombre }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row center">

@@ -1,0 +1,66 @@
+<div class="row valign-wrapper">
+  <div class="col s4 input-field form-group">
+    <i class="material-icons prefix">search</i>
+    <input
+      type="text"
+      class="forms-control"
+      placeholder="Buscar usuario"
+      [(ngModel)]="filtroAsignatura"
+      name="filtroAsignatura"
+    />
+  </div>
+  <div class="col s4">
+    <a routerLink="/administracion/crear-usuarios" class="btn"
+      >Crear asignatura
+    </a>
+  </div>
+  <div class="col s4 right-align">
+    <a routerLink="/administracion/listar-grupos" class="btn"
+      >Administrar grupos
+    </a>
+  </div>
+</div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 300px">
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Creditos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *cdkVirtualFor="
+          let p of listadoAsignaturas | filtroAsignatura: filtroAsignatura
+        "
+      >
+        <tr>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.creditos }}</td>
+
+          <td>
+            <a
+              routerLink="/administracion/editar-asignaturas/{{ p.id }}"
+              class="btn"
+              >grupos</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/editar-asignaturas/{{ p.id }}"
+              class="btn"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/eliminar-asignaturas/{{ p.id }}"
+              class="btn red lighten-1"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</cdk-virtual-scroll-viewport>

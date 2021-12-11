@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import {AuthenticationStrategy} from '@loopback/authentication';
 import {service} from '@loopback/core';
 import {HttpErrors, Request} from '@loopback/rest';
@@ -6,6 +7,7 @@ import parseBearerToken from 'parse-bearer-token';
 import {AutenticacionService} from '../services';
 
 export class EstrategiaAdministrador implements AuthenticationStrategy {
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   name: string = 'admin';
 
   constructor(

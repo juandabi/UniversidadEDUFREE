@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   styleUrls: ['./buscar-usuario.component.css'],
 })
 export class BuscarUsuarioComponent implements OnInit {
+  filtroUsuario = [];
   listadoUsuarios: ModeloUsuario[] = [];
   constructor(private usuarioServicio: UsuarioService) {}
 

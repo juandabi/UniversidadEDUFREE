@@ -51,14 +51,15 @@
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input
-            formControlName="perfilId"
-            id="PerfilId"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="PerfilId" class="active">Perfil</label>
+          <select formControlName="perfilId" name="perfilId" class="active">
+            <option value="" disabled selected>Seleccionar perfil</option>
+            <option
+              value="{{ perfil.id }}"
+              *ngFor="let perfil of listadoPerfiles"
+            >
+              {{ perfil.nombre }}
+            </option>
+          </select>
         </div>
         <div class="input-field col s6">
           <input

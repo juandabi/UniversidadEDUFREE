@@ -8,6 +8,7 @@ import { ProgramaAcademicoService } from 'src/app/servicios/programa-academico.s
   styleUrls: ['./buscar-programa-academico.component.css'],
 })
 export class BuscarProgramaAcademicoComponent implements OnInit {
+  filtroPrograma = [];
   listadoProgramas: ModeloPrograma[] = [];
   constructor(private programaServicio: ProgramaAcademicoService) {}
 

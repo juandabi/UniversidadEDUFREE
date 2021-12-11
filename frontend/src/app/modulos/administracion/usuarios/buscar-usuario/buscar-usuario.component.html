@@ -1,32 +1,62 @@
-<a routerLink="/administracion/crear-usuario" class="btn">Crear usuario </a>
-
-<table class="table responsive">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Nombres</th>
-      <th>Apellidos</th>
-      <th>Correo</th>
-      <th>PerfilId</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of listadoUsuarios">
-      <td>{{ p.id }}</td>
-      <td>{{ p.nombres }}</td>
-      <td>{{ p.apellidos }}</td>
-      <td>{{ p.correoElectronico }}</td>
-      <td>{{ p.perfilId }}</td>
-      <td>
-        <a routerLink="/administracion/editar-usuario/{{ p.id }}" class="btn"
-          >Editar usuario</a
-        >
-      </td>
-            <td>
-        <a routerLink="/administracion/eliminar-usuario/{{ p.id }}" class="btn"
-          >Eliminar usuario</a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row valign-wrapper">
+  <div class="col s4 input-field form-group">
+    <i class="material-icons prefix">search</i>
+    <input
+      type="text"
+      class="forms-control"
+      placeholder="Buscar usuario"
+      [(ngModel)]="filtroUsuario"
+      name="filtroUsuario"
+    />
+  </div>
+  <div class="col s4">
+    <a routerLink="/administracion/crear-usuarios" class="btn"
+      >Crear usuario
+    </a>
+  </div>
+  <div class="col s4 right-align">
+    <a routerLink="/administracion/listar-perfiles" class="btn"
+      >Administrar perfiles
+    </a>
+  </div>
+</div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 300px">
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Correo</th>
+        <th>Perfil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *cdkVirtualFor="let p of listadoUsuarios | filtroUsuario: filtroUsuario"
+      >
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.nombres }}</td>
+          <td>{{ p.apellidos }}</td>
+          <td>{{ p.correoElectronico }}</td>
+          <td>{{ p.perfil.nombre }}</td>
+          <td>
+            <a
+              routerLink="/administracion/editar-usuarios/{{ p.id }}"
+              class="btn"
+              >Editar usuario</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/eliminar-usuarios/{{ p.id }}"
+              class="btn red lighten-1"
+              >Eliminar usuario</a
+            >
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</cdk-virtual-scroll-viewport>
