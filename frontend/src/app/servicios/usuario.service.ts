@@ -28,6 +28,11 @@ export class UsuarioService {
     return this.http.get<ModeloUsuario>(`${this.url}/usuarios/${id}`);
   }
 
+
+  ObtenerUsuarioPorCorreo(correo: string): Observable<ModeloUsuario> {
+    return this.http.get<ModeloUsuario>(`${this.url}/usuarios/${correo}`);
+  }
+
   CrearUsuario(usuario: ModeloUsuario): Observable<ModeloUsuario> {
     return this.http.post<ModeloUsuario>(`${this.url}/usuarios`, usuario, {
       headers: new HttpHeaders({
@@ -48,11 +53,24 @@ export class UsuarioService {
     );
   }
 
-  EliminarUsuario(id: string): Observable<any> {
+  eliminarUsuario(id: string): Observable<any> {
     return this.http.delete<ModeloUsuario>(`${this.url}/usuarios/${id}`, {
       headers: new HttpHeaders({
         authorization: `Bearer ${this.token}`,
       }),
+    });
+  }
+
+
+  
+  cambiarClave(id: string): Observable<any> {
+    return this.http.patch(`${this.url}/usuarios/${id}`,
+    {
+        "clave": "",
+
+      headers: new HttpHeaders({
+        authorization: `Bearer ${this.token}`,
+      })
     });
   }
 }

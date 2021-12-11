@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cambio-clave',
@@ -6,10 +11,63 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cambio-clave.component.css']
 })
 export class CambioClaveComponent implements OnInit {
+  
+  id: string = '';
+  fgValidador: FormGroup = this.fb.group({
+    clave: ['', [Validators.required]],
+  });
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private servicioUsuario: UsuarioService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.BuscarUsuario();
+    this.cambioClave();
   }
+
+
+  BuscarUsuario() {
+    this.servicioUsuario.ObtenerUsuarioPorId(this.id).subscribe({
+      next: (datos: ModeloUsuario) => {
+        this.fgValidador.controls['clave'].setValue(datos.clave);
+      },
+      error: (error) => {},
+    });
+  }
+
+
+
+  cambioClave() {
+
+    let clave = this.fgValidador.controls['clave'].value;
+    let usuario = new ModeloUsuario();
+    usuario.clave = clave;
+    this.servicioUsuario.cambiarClave(this.id).subscribe({
+      next: (datos: ModeloUsuario) => {
+        Swal.fire(
+          'Exito',
+          'Se ha actualizado la clave de manera correcta',
+          'error')
+
+        this.router.navigate(['/administracion/listar-usuarios']);
+
+
+      },
+      error: (error) => {
+        Swal.fire(
+        'Ohpps',
+        'Se ha presentado un error al cambiar de clave',
+        'error')
+        this.router.navigate(['/seguridad/cambioClave']);
+      },
+    });
+  }
+
+
 
 }
