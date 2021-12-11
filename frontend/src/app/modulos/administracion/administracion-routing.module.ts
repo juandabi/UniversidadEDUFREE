@@ -125,6 +125,10 @@ const routes: Routes = [
     component: BuscarGrupoComponent,
   },
   {
+    path: 'listar-grupos/:asignaturaId',
+    component: BuscarGrupoComponent,
+  },
+  {
     path: 'buscar-grupos',
     component: BuscarGrupoComponent,
   },

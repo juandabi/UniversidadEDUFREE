@@ -4,13 +4,13 @@
     <input
       type="text"
       class="forms-control"
-      placeholder="Buscar usuario"
+      placeholder="Buscar asignatura"
       [(ngModel)]="filtroAsignatura"
       name="filtroAsignatura"
     />
   </div>
   <div class="col s4">
-    <a routerLink="/administracion/crear-usuarios" class="btn"
+    <a routerLink="/administracion/crear-asignaturas" class="btn"
       >Crear asignatura
     </a>
   </div>
@@ -39,9 +39,7 @@
           <td>{{ p.creditos }}</td>
 
           <td>
-            <a
-              routerLink="/administracion/editar-asignaturas/{{ p.id }}"
-              class="btn"
+            <a routerLink="/administracion/listar-grupos/{{ p.id }}" class="btn"
               >grupos</a
             >
           </td>

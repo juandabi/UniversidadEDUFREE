@@ -14,7 +14,6 @@ export class BuscarAsignaturaComponent implements OnInit {
   programaAcademicoId: string = '';
   constructor(
     private asignaturaServicio: AsignaturaService,
-    private router: Router,
     private route: ActivatedRoute
   ) {}
 

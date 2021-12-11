@@ -1,36 +1,51 @@
-<a routerLink="/administracion/crear-grupos" class="btn">Crear grupo </a>
-
-<table class="table responsive">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>Nombre</th>
-      <th>asignatura</th>
-      <th>Docente</th>
-      <th>Horario</th>
-      <th>Actividades</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of listadoGrupos">
-      <td>{{ p.id }}</td>
-      <td>{{ p.nombre }}</td>
-      <td>{{ p.asignaturaId }}</td>
-      <td>{{ p.docenteId }}</td>
-      <td>{{ p.horario }}</td>
-      <td>{{ p.actividades }}</td>
-      <td>
-        <a routerLink="/administracion/editar-grupos/{{ p.id }}" class="btn"
-          >Editar</a
-        >
-      </td>
-      <td>
-        <a
-          routerLink="/administracion/eliminar-grupos/{{ p.id }}"
-          class="btn red lighten-1"
-          >Eliminar</a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row valign-wrapper">
+  <div class="col s4 input-field form-group">
+    <i class="material-icons prefix">search</i>
+    <input
+      type="text"
+      class="forms-control"
+      placeholder="Buscar grupo"
+      [(ngModel)]="filtroGrupo"
+      name="filtroGrupo"
+    />
+  </div>
+  <div class="col s4">
+    <a routerLink="/administracion/crear-grupos" class="btn">Crear grupo</a>
+  </div>
+</div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 300px">
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Nombre grupo</th>
+        <th>Documento docente</th>
+        <th>Nombre docente</th>
+        <th>Horario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *cdkVirtualFor="let p of listadoGrupos | filtroGrupo: filtroGrupo"
+      >
+        <tr></tr>
+        <tr>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.docenteId }}</td>
+          <td>{{ p.horario }}</td>
+          <td>
+            <a routerLink="/administracion/editar-grupos/{{ p.id }}" class="btn"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/eliminar-grupos/{{ p.id }}"
+              class="btn red lighten-1"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</cdk-virtual-scroll-viewport>
