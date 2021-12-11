@@ -1,0 +1,65 @@
+<div class="d-flex flex-column bd-highlight mb-3" style="margin-left: 20%; background-color: azure;">
+
+<a routerLink="/administracion/crear-grupos" class="btn"
+  >Crear grupo
+</a>
+
+<table class="table responsive">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>docente</th>
+      <th>horario</th>
+      <th>actividades</th>
+      <th>P Academico</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let grupo of  listadoGrupos">
+      <td>{{grupo.nombre }}</td>
+      <td>{{grupo.docenteId }}</td>
+
+
+      <td><button (click)="verHorarios(grupo)">Horario</button></td>
+      <td><button>Actividades</button></td>
+
+
+      <td>{{grupo.asignaturaId }}</td>
+      <td>
+        <a
+          routerLink="/administracion/editar-grupos/{{ grupo.id }}"
+          class="btn"
+          >Editar</a
+        >
+      </td>
+      <td>
+        <a
+          routerLink="/administracion/eliminar-grupos/{{ grupo.id }}"
+          class="btn"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<table class="table responsive" *ngIf="modo == 'horario'">
+  <thead>
+    <tr>
+      <th>dia</th>
+      <th>franja</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let horario of  listaHorarios">
+      <td>{{horario.dia}}</td>
+      <td>{{horario.hora}}</td>
+
+    </tr>
+  </tbody>
+</table>
+</div>

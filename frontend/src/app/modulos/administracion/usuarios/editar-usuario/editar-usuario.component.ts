@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -61,10 +62,20 @@ export class EditarUsuarioComponent implements OnInit {
     p.perfilId = perfilId;
     this.servicioUsuario.ActualizarUsuario(p).subscribe({
       next: (datos: ModeloUsuario) => {
+        Swal.fire(
+          'lo sentimos',
+          'ha ocurrido un error al crear el nuevo usuario',
+          'error'
+        )
         alert('Usuario actualizado correctamente');
         this.router.navigate(['/administracion/listar-usuarios']);
       },
       error: (error) => {
+        Swal.fire(
+          'lo sentimos',
+          'ha ocurrido un error al crear el nuevo usuario',
+          'error'
+        )
         alert('Error al actualizar el usuario');
       },
     });

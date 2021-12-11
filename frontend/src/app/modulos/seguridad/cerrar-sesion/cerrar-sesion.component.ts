@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cerrar-sesion',
@@ -16,5 +17,10 @@ export class CerrarSesionComponent implements OnInit {
   ngOnInit(): void {
     this.servicioSeguridad.EliminarInformacionSesion();
     this.router.navigate(['/inicio']);
+    Swal.fire(
+      'ok',
+      ' La sesion se ha cerrado correctamente',
+      'success'
+    )
   }
 }

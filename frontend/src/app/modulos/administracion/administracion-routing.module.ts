@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CrearGruposComponent } from './grupos/crear-grupos/crear-grupos/crear-grupos.component';
+import { EditarGrupoComponent } from './grupos/editar-grupos/editar-grupo/editar-grupo.component';
+import { EliminarGrupoComponent } from './grupos/eliminar-grupo/eliminar-grupo/eliminar-grupo.component';
+import { GruposComponent } from './grupos/grupos.component';
 import { BuscarProgramaAcademicoComponent } from './programas-academicos/buscar-programa-academico/buscar-programa-academico.component';
 import { CrearProgramaAcademicoComponent } from './programas-academicos/crear-programa-academico/crear-programa-academico.component';
 import { EditarProgramaAcademicoComponent } from './programas-academicos/editar-programa-academico/editar-programa-academico.component';
@@ -53,6 +57,30 @@ const routes: Routes = [
     path: 'editar-programas-academicos/:id',
     component: EditarProgramaAcademicoComponent,
   },
+  
+  //grupos
+  {
+    path: 'grupos',
+    component: GruposComponent,
+  },
+  {
+    path: 'listar-grupos',
+    component: GruposComponent,
+  },
+  {
+    path: 'eliminar-grupos/:id',
+    component: EliminarGrupoComponent,
+  },
+  {
+    path: 'crear-grupos',
+    component: CrearGruposComponent,
+  },
+  {
+    path: 'editar-grupos/:id',
+    component: EditarGrupoComponent,
+  }
+
+
 ];
 
 @NgModule({
@@ -60,3 +88,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AdministracionRoutingModule {}
+
+

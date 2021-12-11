@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloPrograma } from 'src/app/modelos/programa.modelo';
 import { ProgramaAcademicoService } from 'src/app/servicios/programa-academico.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-programa-academico',
@@ -56,6 +57,8 @@ export class EditarProgramaAcademicoComponent implements OnInit {
     let totalCreditos = this.fgValidador.controls['totalCreditos'].value;
     let duracion = this.fgValidador.controls['duracion'].value;
     let modalidad = this.fgValidador.controls['modalidad'].value;
+
+    
     let p = new ModeloPrograma();
     p.id = this.id;
     p.nombre = nombre;
@@ -63,12 +66,24 @@ export class EditarProgramaAcademicoComponent implements OnInit {
     p.totalCreditos = totalCreditos;
     p.duracion = duracion;
     p.modalidad = modalidad;
+
+
     this.servicioProgramaAcademico.ActualizarPrograma(p).subscribe({
       next: (datos: ModeloPrograma) => {
+        Swal.fire(
+          'ok',
+          'El programa se ha editado de manera correcta',
+          'success'
+        )
         alert('Programa Actualizado');
         this.router.navigate(['/administracion/listar-programas-academicos']);
       },
       error: (error) => {
+        Swal.fire(
+          'lo sentimos',
+          'No se pudo editar el programa academico',
+          'error'
+        )
         alert('Error al Actualizar');
       },
     });

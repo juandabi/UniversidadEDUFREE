@@ -1,7 +1,7 @@
 <div class="row">
   <h3 class="center-align">Crear usuario</h3>
   <div class="row center">
-    <form
+    <form style="margin: 8%; background-color: azure;"
       [formGroup]="fgValidador"
       (ngSubmit)="GuardarUsuario()"
       class="col s12"
@@ -50,7 +50,12 @@
           <label for="correo">correo electronico</label>
         </div>
       </div>
+
+
+
       <div class="row">
+
+
         <div class="input-field col s6">
           <input
             formControlName="perfilId"
@@ -59,7 +64,13 @@
             class="validate"
             required
           />
+
+
           <label for="PerfilId">Perfil</label>
+
+          
+
+
         </div>
         <div class="input-field col s6">
           <input

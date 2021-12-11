@@ -44,16 +44,16 @@ export class Grupo extends Entity {
   docenteId: string;
 
   @property({
-    type: 'object',
-    required: true,
+    type: 'array',
+    itemType: 'object',
   })
-  horario: object;
+  horario?: object[]; // e.g ['LoopBack', 4, true]
 
   @property({
-    type: 'object',
-    required: false,
+    type: 'array',
+    itemType: 'object',
   })
-  actividades: object;
+  actividades?: object[]; // e.g ['LoopBack', 4, true]v
 
   @belongsTo(() => Asignatura)
   asignaturaId: string;

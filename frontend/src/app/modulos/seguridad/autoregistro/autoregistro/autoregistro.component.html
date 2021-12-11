@@ -1,0 +1,112 @@
+<form class="d-flex flex-row" [formGroup]="fgValidador" (ngSubmit)="GuardarUsuario()" style="
+    position: static;
+    
+    background: rgb(4, 107, 121);
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-bottom: 20%;
+    padding: 10px;">
+
+    <div class="m-3">
+        <h4 style="color: azure;">Formulario de Registro</h4>
+        <div class=" m-3">
+            <button [disabled]="!fgValidador.valid" type="submit" class="btn btn-dark">Registrarse</button>
+        </div>
+    </div>
+
+
+    <div class="d-flex flex-row bd-highlight">
+
+        <div>
+
+            <label for="basic-url">ingrese su numero de documento: </label>
+            <div class="p-2 bd-highlight"
+                style=" color: black; background-color: azure; padding: 1%; border: black; border-radius: 10px;">
+                <span class="input-group-addon" id="basic-addon3"></span>
+                <input formControlName="id" type="text" class="form-control" id="basic-url"
+                    aria-describedby="basic-addon3" placeholder="id">
+            </div>
+            <div *ngIf="!this.fgValidador.controls['id'].value" style="font-size: 10px ; color: rgb(10, 236, 29);">
+                !!
+                Campo requerido</div>
+        </div>
+
+
+
+        <div>
+
+            <label for="basic-url">ingrese sus nombres: </label>
+            <div class="m-3"
+                style=" color: black; background-color: azure; padding: 1%; border: black; border-radius: 10px;">
+                <span class="input-group-addon" id="basic-addon3"></span>
+                <input formControlName="nombres" type="text" class="form-control" id="basic-url"
+                    aria-describedby="basic-addon3" placeholder="nombres">
+            </div>
+            <div *ngIf="!this.fgValidador.controls['nombres'].value" style="font-size: 10px ; color: rgb(10, 236, 29);">
+                !!
+                Campo requerido</div>
+
+        </div>
+
+
+        <div>
+
+            <label for="basic-url">ingrese sus apellidos: </label>
+            <div class="m-3"
+                style=" color: black; background-color: azure; padding: 1%; border: black; border-radius: 10px;">
+                <span class="input-group-addon" id="basic-addon3"></span>
+                <input formControlName="apellidos" type="text" class="form-control" id="basic-url"
+                    aria-describedby="basic-addon3" placeholder="apellidos">
+            </div>
+            <div *ngIf="!this.fgValidador.controls['apellidos'].value" style="font-size: 10px ; color: rgb(10, 236, 29);">
+                !!
+                Campo requerido</div>
+
+        </div>
+
+        <div>
+
+            <label for="basic-url">ingrese su correo: </label>
+            <div class="m-3"
+                style=" color: black; background-color: azure; padding: 1%; border: black; border-radius: 10px;">
+                <span class="input-group-addon" id="basic-addon3"></span>
+                <input formControlName="correo" type="text" class="form-control" id="basic-url"
+                    aria-describedby="basic-addon3" placeholder="correo">
+            </div>
+            <div *ngIf="!this.fgValidador.controls['correo'].value" style="font-size: 10px ; color: rgb(10, 236, 29);">
+                !!
+                Campo requerido</div>
+
+        </div>
+
+        <div>
+
+            <label for="basic-url">ingrese una contraseña: </label>
+            <div class="m-3"
+                style=" color: black; background-color: azure; padding: 1%; border: black; border-radius: 10px;">
+                <span class="input-group-addon" id="basic-addon3"></span>
+                <input formControlName="clave" type="text" class="form-control" id="basic-url"
+                    aria-describedby="basic-addon3" placeholder="contraseña">
+            </div>
+            <div *ngIf="!this.fgValidador.controls['clave'].value" style="font-size: 10px ; color: rgb(10, 236, 29);">
+                !!
+                Campo requerido</div>
+
+        </div>
+
+        <div>
+
+            <label for="basic-url">seleccione perfil de usuario: </label>
+            <div class="m-3"
+                style=" color: black; background-color: azure; padding: 1%; border: black; border-radius: 10px;">
+                <span class="input-group-addon" id="basic-addon3"></span>
+                <input formControlName="perfilId" type="text" class="form-control" id="basic-url"
+                    aria-describedby="basic-addon3" placeholder="perfil">
+            </div>
+            <div *ngIf="!this.fgValidador.controls['perfilId'].value" style="font-size: 10px ; color: rgb(10, 236, 29);">
+                !!
+                Campo requerido</div>
+
+        </div>
+    </div>
+</form>

@@ -1,9 +1,10 @@
-<nav>
+<nav style="position: fixed; top: 0%; width: 100%; background-color: rgb(110, 75, 9);">
   <div class="nav-wrapper">
     <a routerlink="/inicio" class="brand-logo">Logo</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"
       ><i class="material-icons">menu</i></a
     >
+    
     <ul class="right hide-on-med-and-down">
       <li *ngIf="seInicioSesion">
         <a routerLink="/administracion/listar-usuarios">Usuarios</a>
@@ -12,6 +13,10 @@
         <a routerLink="/administracion/listar-programas-academicos"
           >Programas academicos</a
         >
+        <li *ngIf="seInicioSesion">
+          <a routerLink="/administracion/grupos"
+            >Grupos</a
+          >
       </li>
       <li *ngIf="seInicioSesion">
         <a routerLink="/seguridad/cambioClave">Cambiar Clave</a>

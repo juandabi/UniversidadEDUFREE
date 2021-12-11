@@ -6,11 +6,12 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-crear-usuario',
-  templateUrl: './crear-usuario.component.html',
-  styleUrls: ['./crear-usuario.component.css'],
+  selector: 'app-autoregistro',
+  templateUrl: './autoregistro.component.html',
+  styleUrls: ['./autoregistro.component.css']
 })
-export class CrearUsuarioComponent implements OnInit {
+export class AutoregistroComponent implements OnInit {
+
   fgValidador: FormGroup = this.fb.group({
     id: ['', [Validators.required]],
     nombres: ['', [Validators.required]],
@@ -34,6 +35,8 @@ export class CrearUsuarioComponent implements OnInit {
     let correo = this.fgValidador.controls['correo'].value;
     let clave = this.fgValidador.controls['clave'].value;
     let perfilId = this.fgValidador.controls['perfilId'].value;
+
+
     let p = new ModeloUsuario();
     p.id = id;
     p.nombres = nombres;
@@ -41,23 +44,23 @@ export class CrearUsuarioComponent implements OnInit {
     p.correoElectronico = correo;
     p.clave = clave;
     p.perfilId = perfilId;
+
+
     this.servicioUsuario.CrearUsuario(p).subscribe({
       next: (datos: ModeloUsuario) => {
         Swal.fire(
-          'lo sentimos',
-          'ha ocurrido un error al crear el nuevo usuario',
-          'error'
+          'Felicitaciones !!',
+          'Su registro ha sido exitoso',
+          'success'
         )
-        alert('Usuario creado correctamente');
         this.router.navigate(['/administracion/listar-usuarios']);
       },
       error: (error) => {
         Swal.fire(
           'lo sentimos',
-          'ha ocurrido un error al crear el nuevo usuario',
+          'Se ha producido un error en el registro',
           'error'
         )
-        alert('Error al crear el usuario');
       },
     });
   }

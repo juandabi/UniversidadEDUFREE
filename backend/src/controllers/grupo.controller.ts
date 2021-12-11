@@ -44,6 +44,18 @@ export class GrupoController {
     })
     grupo: Omit<Grupo, 'id'>,
   ): Promise<Grupo> {
+
+
+    //const horario= grupo.horario;
+    //const actividades= grupo.actividades;
+    
+   // for (const [clave, valor] of Object.entries(horario)) {}
+
+
+
+
+
+
     return this.grupoRepository.create(grupo);
   }
 

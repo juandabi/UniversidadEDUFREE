@@ -1,0 +1,50 @@
+<form [formGroup]="fgValidador" (ngSubmit)="GuardarGrupo()" class="col s12">
+
+  <h3 class="center-align">Crear nuevo grupo</h3>
+  <div class="m-3" style="font-size: 20px ; color: azure;">
+
+    <span class="input-group-addon" id="basic-addon3"></span>
+
+    <div class="row">
+    <div class="col">
+      <label for="nombre">Nombre</label>
+      <input formControlName="nombre" id="nombre"  aria-describedby="basic-addon3" type="text" class="validate" required />
+    </div>
+
+
+    <div class="col">
+
+      <label for="nivelFormacion">docente</label>
+      <input formControlName="docenteId" id="nivelFormacion" type="text" class="validate" required />
+    </div>
+  </div>
+
+    
+
+
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input formControlName="horario" id="totalCreditos" type="text" class="validate" required />
+        <label for="totalCreditos">horario</label>
+      </div>
+      <div class="input-field col s6">
+        <input formControlName="actividades" id="duracion" type="text" class="validate" required />
+        <label for="duracion">actividades</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input formControlName="asignaturaId" id="modalidad" type="text" class="validate" required />
+        <label for="modalidad">asignatura</label>
+      </div>
+    </div>
+    <div class="row center">
+      <div class="row input-field col s3">
+        <button href="#" class="btn waves-effect waves-light col s12" type="submit" name="action">
+          Crear
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
