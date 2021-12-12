@@ -19,19 +19,29 @@
       <tr>
         <th>Nombre grupo</th>
         <th>Documento docente</th>
-        <th>Nombre docente</th>
-        <th>Horario</th>
+        <th>Horario (Día - Hora Inicio - Duración)</th>
       </tr>
     </thead>
     <tbody>
       <ng-container
         *cdkVirtualFor="let p of listadoGrupos | filtroGrupo: filtroGrupo"
       >
-        <tr></tr>
         <tr>
           <td>{{ p.nombre }}</td>
           <td>{{ p.docenteId }}</td>
-          <td>{{ p.horario }}</td>
+          <table *ngFor="let horario of p.horario" class="horario">
+            <tr class="horario">
+              <td class="horario">{{ horario.dia }}</td>
+              <td class="horario">{{ horario.horaInicio }}:00</td>
+              <td *ngIf="horario.duracion == 1" class="horario">
+                {{ horario.duracion }} hora
+              </td>
+              <td *ngIf="horario.duracion > 1" class="horario">
+                {{ horario.duracion }} horas
+              </td>
+            </tr>
+          </table>
+
           <td>
             <a routerLink="/administracion/editar-grupos/{{ p.id }}" class="btn"
               >Editar</a

@@ -9,3 +9,31 @@
   height: 100%;
   width: 100%;
 }
+
+tr:hover {
+  background-color: rgb(224, 224, 224);
+}
+
+th {
+  text-align: left;
+}
+
+
+table.horario {
+  border: 0px solid black;
+  border-collapse: collapse;
+  text-align: left;
+  width: 90%;
+  height: 90%;
+}
+
+td.horario {
+  border: 0px solid black;
+  border-collapse: collapse;
+  text-align: left;
+  width: 33%;
+}
+tr.horario {
+  border: 0px solid black;
+  border-collapse: collapse;
+}

@@ -19,8 +19,6 @@ export class FiltroGrupoPipe implements PipeTransform {
         resultadoGrupo.push(grupo);
       } else if (grupo.docenteId.indexOf(arg) > -1) {
         resultadoGrupo.push(grupo);
-      } else if (grupo.horario.toLowerCase().indexOf(arg) > -1) {
-        resultadoGrupo.push(grupo);
       }
     }
     return resultadoGrupo;

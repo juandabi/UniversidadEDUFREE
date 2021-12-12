@@ -43,8 +43,8 @@ export class Grupo extends Entity {
     required: true,
   })
   horario: object[];
-  // HORARIO: [{'dia': [horaInicio, duracion]}] HORA MILITAR
-  // HORARIO: [{'Lunes': [10, 2]}]
+  // HORARIO: [{dia, horaInicio, duración}] HORA MILITAR
+  // HORARIO: [{dia: 'Lunes', horaInicio: 10, duración: 1}]
 
   @property({
     type: 'array',
