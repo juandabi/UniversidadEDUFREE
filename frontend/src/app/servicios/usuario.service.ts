@@ -62,15 +62,14 @@ export class UsuarioService {
   }
 
 
-  
-  cambiarClave(id: string): Observable<any> {
-    return this.http.patch(`${this.url}/usuarios/${id}`,
-    {
-        "clave": "",
 
-      headers: new HttpHeaders({
-        authorization: `Bearer ${this.token}`,
-      })
-    });
+  cambiarClave(id: string, claveNueva : string ): Observable<any> {
+    return this.http.patch(`${this.url}/usuarios/${id}`,
+      JSON.stringify({ clave: claveNueva }),
+      {
+        headers: new HttpHeaders({
+          authorization: `Bearer ${this.token}`,
+        })
+      });
   }
 }

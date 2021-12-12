@@ -1,5 +1,27 @@
 <app-barra-navegacion> </app-barra-navegacion>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
 <img src="/assets/images/campus.jpg" >
+
+
+<div class="row">
+  <div class="col" style="position: relative; padding: 10px;">
+    <app-sidebar></app-sidebar>
+
+
+  </div>
+  <div class="col">
+    <div class="container" style="background-color: azure; position:relative;">
+      <router-outlet></router-outlet>
+    </div>
+
+
+  </div>
+  
+
+
+
+
+</div>
+
+
+
+<app-pie-pagina></app-pie-pagina>

@@ -47,7 +47,7 @@ export class CambioClaveComponent implements OnInit {
     let clave = this.fgValidador.controls['clave'].value;
     let usuario = new ModeloUsuario();
     usuario.clave = clave;
-    this.servicioUsuario.cambiarClave(this.id).subscribe({
+    this.servicioUsuario.cambiarClave(this.id, clave).subscribe({
       next: (datos: ModeloUsuario) => {
         Swal.fire(
           'Exito',
@@ -55,7 +55,6 @@ export class CambioClaveComponent implements OnInit {
           'error')
 
         this.router.navigate(['/administracion/listar-usuarios']);
-
 
       },
       error: (error) => {
