@@ -24,10 +24,11 @@ export class CambioClaveComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.BuscarUsuario();
-    this.cambioClave();
   }
 
 
@@ -41,13 +42,9 @@ export class CambioClaveComponent implements OnInit {
   }
 
 
-
   cambioClave() {
-
-    let clave = this.fgValidador.controls['clave'].value;
-    let usuario = new ModeloUsuario();
-    usuario.clave = clave;
-    this.servicioUsuario.cambiarClave(this.id, clave).subscribe({
+    let nuevaClave = this.fgValidador.controls['clave'].value;
+    this.servicioUsuario.cambiarClave(this.id, nuevaClave).subscribe({
       next: (datos: ModeloUsuario) => {
         Swal.fire(
           'Exito',
@@ -62,7 +59,7 @@ export class CambioClaveComponent implements OnInit {
         'Ohpps',
         'Se ha presentado un error al cambiar de clave',
         'error')
-        this.router.navigate(['/seguridad/cambioClave']);
+        this.router.navigate(['/seguridad/cambio-clave']);
       },
     });
   }

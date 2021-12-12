@@ -1,27 +1,17 @@
+
+
 <app-barra-navegacion> </app-barra-navegacion>
-<img src="/assets/images/campus.jpg" >
+<img src="/assets/images/mundo-digital.jpeg">
 
 
-<div class="row">
-  <div class="col" style="position: relative; padding: 10px;">
+<div class="row flex-nowrap">
+  <div   *ngIf="seInicioSesion" class="col flex-nowrap" style="position: relative; padding: 10px; width: 20%; height: 100%; ">
     <app-sidebar></app-sidebar>
-
-
   </div>
-  <div class="col">
-    <div class="container" style="background-color: azure; position:relative;">
+
+  <div class="col flex-nowrap" style="position:relative; width: 80%; height: 100%; background-color: azure;">
       <router-outlet></router-outlet>
-    </div>
-
-
   </div>
-  
-
-
-
-
 </div>
-
-
 
 <app-pie-pagina></app-pie-pagina>

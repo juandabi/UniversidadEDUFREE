@@ -15,7 +15,7 @@ const routes: Routes = [
     component: CerrarSesionComponent,
   },
   {
-    path: 'cambioClave',
+    path: 'cambio-clave',
     component: CambioClaveComponent,
   },
 ];

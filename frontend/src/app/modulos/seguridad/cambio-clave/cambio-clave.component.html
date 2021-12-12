@@ -1,6 +1,9 @@
 <p>cambio-clave works!</p>
+<div class="container">
     <div class="row center">
-        <form class="col s4"
+        <form 
+        [formGroup]="fgValidador"
+        class="col s4"
         (ngSubmit)="cambioClave()"
         >
                 
@@ -19,7 +22,7 @@
 
                 
                     <div class="row input-field col center">
-                        <button href="#" class="btn waves-effect waves-light col s12" type="submit" name="action">
+                        <button class="btn waves-effect waves-light col s12" type="submit" name="action">
                             Cambiar Clave
                         </button>
                     
@@ -27,3 +30,4 @@
 
         </form>
     </div>
+</div>
