@@ -41,7 +41,6 @@ export class CrearGrupoComponent implements OnInit {
 
   ngOnInit(): void {
     this.asignaturaId = this.route.snapshot.params['asignaturaId'];
-
   }
 
   GuardarGrupo() {
@@ -101,7 +100,9 @@ export class CrearGrupoComponent implements OnInit {
     this.sevicioGrupo.CrearGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
         alert('Grupo creada con exito');
-        this.router.navigate(['/administracion/listar-grupos']);
+        this.router.navigate([
+          `/administracion/listar-grupos/${this.asignaturaId}`,
+        ]);
       },
       error: (error) => {
         alert('Error al crear la grupo');

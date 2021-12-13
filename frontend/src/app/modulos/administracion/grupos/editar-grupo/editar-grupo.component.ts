@@ -162,7 +162,7 @@ export class EditarGrupoComponent implements OnInit {
     this.servicioGrupo.ActualizarGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
         alert('Grupo Actualizado');
-        this.router.navigate(['/administracion/listar-grupos']);
+        this.router.navigate([`/administracion/listar-grupos/${asignaturaId}`]);
       },
       error: (error) => {
         alert('Error al actualizar');
