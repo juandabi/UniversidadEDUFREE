@@ -46,7 +46,7 @@ export class EditarAsignaturaComponent implements OnInit {
 
   EditarAsignatura() {
     let nombre = this.fgValidador.controls['nombre'].value;
-    let creditos = this.fgValidador.controls['creditos'].value;
+    let creditos = parseInt(this.fgValidador.controls['creditos'].value);
     let programaAcademicoId =
       this.fgValidador.controls['programaAcademicoId'].value;
     let p = new ModeloAsignatura();
@@ -57,7 +57,9 @@ export class EditarAsignaturaComponent implements OnInit {
     this.servicioAsignatura.ActualizarAsignatura(p).subscribe({
       next: (datos: ModeloAsignatura) => {
         alert('Asignatura actualizada correctamente');
-        this.router.navigate(['/administracion/listar-asignaturas']);
+        this.router.navigate([
+          `/administracion/listar-asignaturas/${programaAcademicoId}`,
+        ]);
       },
       error: (error) => {
         alert('Error al actualizar la asignatura');

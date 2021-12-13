@@ -29,7 +29,6 @@ export class EditarProgramaAcademicoComponent implements OnInit {
   id: string = '';
 
   fgValidador: FormGroup = this.fb.group({
-    id: ['', [Validators.required]],
     nombre: ['', [Validators.required]],
     nivelFormacion: ['', [Validators.required]],
     totalCreditos: ['', [Validators.required]],
@@ -51,7 +50,6 @@ export class EditarProgramaAcademicoComponent implements OnInit {
   BuscarProgramaAcademico() {
     this.servicioProgramaAcademico.ObtenerProgramaPorId(this.id).subscribe({
       next: (datos: ModeloPrograma) => {
-        this.fgValidador.controls['id'].setValue(this.id);
         this.fgValidador.controls['nombre'].setValue(datos.nombre);
         this.fgValidador.controls['nivelFormacion'].setValue(
           datos.nivelFormacion

@@ -5,10 +5,13 @@
       ><i class="material-icons">menu</i></a
     >
     <ul class="right hide-on-med-and-down">
-      <li *ngIf="seInicioSesion">
-        <a routerLink="/administracion/listar-usuarios">Usuarios</a>
+      <li *ngIf="SesionAdministrador">
+        <a routerLink="/administracion/listar-usuarios/">Usuarios</a>
       </li>
-      <li *ngIf="seInicioSesion">
+      <li *ngIf="SesionEstudiante">
+        <a routerLink="/estudiante/listar-grupos/{{ usuarioId }}">Grupos</a>
+      </li>
+      <li *ngIf="SesionAdministrador">
         <a routerLink="/administracion/listar-programas-academicos"
           >Programas academicos</a
         >
@@ -29,11 +32,6 @@
 <ul class="sidenav" id="mobile-demo">
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-usuarios">Usuarios</a>
-  </li>
-  <li *ngIf="seInicioSesion">
-    <a routerLink="/administracion/listar-usuarios-por-grupo"
-      >Usuario por grupos</a
-    >
   </li>
   <li *ngIf="seInicioSesion">
     <a routerLink="/administracion/listar-programas-academicos"

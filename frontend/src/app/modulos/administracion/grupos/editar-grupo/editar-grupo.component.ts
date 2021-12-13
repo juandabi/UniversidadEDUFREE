@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModeloGrupo } from 'src/app/modelos/grupo.modelo';
+import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
+import { ModeloUsuarioPorGrupo } from 'src/app/modelos/usuarioPorGrupo.modelo';
 import { GrupoService } from 'src/app/servicios/grupo.service';
+import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-editar-grupo',
@@ -11,6 +15,8 @@ import { GrupoService } from 'src/app/servicios/grupo.service';
 })
 export class EditarGrupoComponent implements OnInit {
   id: string = '';
+  listadoUsuarios: ModeloUsuario[] = [];
+
   listadoDias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
   listadoHoras = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   listadoDuracion = [1, 2, 3, 4];
@@ -36,12 +42,15 @@ export class EditarGrupoComponent implements OnInit {
     private fb: FormBuilder,
     private servicioGrupo: GrupoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private usuarioServicio: UsuarioService,
+    private servicioUsuarioPorGrupo: UsuarioPorGrupoService
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.BuscarGrupo();
+    this.ObtenerUsuarios();
   }
 
   BuscarGrupo() {
@@ -161,12 +170,36 @@ export class EditarGrupoComponent implements OnInit {
     p.asignaturaId = asignaturaId;
     this.servicioGrupo.ActualizarGrupo(p).subscribe({
       next: (datos: ModeloGrupo) => {
+        this.GuardarUsuarioPorGrupo(this.id);
         alert('Grupo Actualizado');
         this.router.navigate([`/administracion/listar-grupos/${asignaturaId}`]);
       },
       error: (error) => {
         alert('Error al actualizar');
       },
+    });
+  }
+
+  ObtenerUsuarios() {
+    this.usuarioServicio
+      .ObtenerUsuarios()
+      .subscribe((datos: ModeloUsuario[]) => {
+        this.listadoUsuarios = datos;
+        this.listadoUsuarios = this.listadoUsuarios.filter(
+          (a) => a.perfilId === '2' || a.perfilId === '4'
+        );
+      });
+  }
+
+  GuardarUsuarioPorGrupo(grupo: string) {
+    console.log('GuardarUsuarioPorGrupo');
+    let usuarioId = this.fgValidador.controls['docenteId'].value;
+    let p = new ModeloUsuarioPorGrupo();
+    p.usuarioId = usuarioId;
+    p.grupoId = grupo;
+    this.servicioUsuarioPorGrupo.CrearUsuarioPorGrupo(p).subscribe({
+      next: (datos: ModeloUsuarioPorGrupo) => {},
+      error: (error) => {},
     });
   }
 }

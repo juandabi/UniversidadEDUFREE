@@ -1,4 +1,4 @@
-<h3 class="center-align">Editar grupo</h3>
+<h2 class="center-align">Editar grupo</h2>
 <div class="row center">
   <form [formGroup]="fgValidador" (ngSubmit)="EditarGrupo()" class="col s12">
     <div class="row">
@@ -13,17 +13,24 @@
         <label for="nombre" class="active">Nombre</label>
       </div>
       <div class="input-field col s6">
-        <input
-          formControlName="docenteId"
-          id="docenteId"
-          type="text"
-          class="validate"
-          required
-        />
-        <label for="docenteId" class="active">Documento del docente</label>
+        <select formControlName="docenteId" name="docenteId" required>
+          <option value="" disabled selected>Asignar docente</option>
+          <option
+            value="{{ usuario.id }}"
+            *ngFor="let usuario of listadoUsuarios"
+          >
+            {{ usuario.id }}
+            {{ usuario.nombres }}
+            {{ usuario.apellidos }}
+          </option>
+        </select>
+        <label for="docenteId" class="active">Docente</label>
       </div>
     </div>
+
     <div class="row">
+      <h3 class="center-align">Horarios de clase</h3>
+
       <table>
         <thead>
           <tr>
@@ -232,7 +239,7 @@
           type="submit"
           name="action"
         >
-          Editar grupo
+          Actualizar grupo
         </button>
       </div>
     </div>

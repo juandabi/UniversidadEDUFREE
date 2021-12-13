@@ -20,7 +20,6 @@ export class BuscarProgramaAcademicoComponent implements OnInit {
       .ObtenerProgramas()
       .subscribe((datos: ModeloPrograma[]) => {
         this.listadoProgramas = datos;
-        console.log(datos[0]);
       });
   }
 }

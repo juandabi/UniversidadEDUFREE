@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ModeloIdentificar } from '../modelos/identificar.modelo';
+import { ModeloIdentificar } from 'src/app/modelos/Identificar.modelo';
 
 @Injectable({
   providedIn: 'root',

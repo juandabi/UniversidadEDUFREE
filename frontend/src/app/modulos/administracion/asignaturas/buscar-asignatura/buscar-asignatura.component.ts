@@ -34,7 +34,6 @@ export class BuscarAsignaturaComponent implements OnInit {
           this.listadoAsignaturas = listado.filter(
             (a) => a.programaAcademicoId === arg
           );
-          console.log(datos[0]);
         }
       });
   }

@@ -50,7 +50,6 @@ export class CrearUsuarioComponent implements OnInit {
     this.servicioUsuario.CrearUsuario(p).subscribe({
       next: (datos: ModeloUsuario) => {
         alert('Usuario creado correctamente');
-        alert(datos.perfilId);
         this.router.navigate(['/administracion/listar-usuarios']);
       },
       error: (error) => {

@@ -10,10 +10,10 @@ import { GrupoService } from 'src/app/servicios/grupo.service';
   styleUrls: ['./buscar-usuario-por-grupo.component.css'],
 })
 export class BuscarUsuarioPorGrupoComponent implements OnInit {
+  filtroEstudiantes = [];
   listadoUsuariosPorGrupos: ModeloGrupo[] = [];
   listadoEstudiantes: ModeloUsuario[] = [];
   grupoId: string = '';
-  filtroEstudiantes = [];
 
   constructor(
     private grupoServicio: GrupoService,
@@ -38,7 +38,9 @@ export class BuscarUsuarioPorGrupoComponent implements OnInit {
           });
         });
       }
-      console.log(this.listadoEstudiantes);
+      this.listadoEstudiantes = this.listadoEstudiantes.filter(
+        (a) => a.id !== this.listadoUsuariosPorGrupos[0].docenteId
+      );
     });
   }
 }

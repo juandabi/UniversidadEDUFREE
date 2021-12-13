@@ -4,7 +4,7 @@
     <input
       type="text"
       class="forms-control"
-      placeholder="Buscar usuarios por grupo"
+      placeholder="Buscar estudiantes por grupo"
       [(ngModel)]="filtroEstudiantes"
       name="filtroEstudiantes"
     />
@@ -37,13 +37,6 @@
           <td>{{ p.nombres }}</td>
           <td>{{ p.apellidos }}</td>
 
-          <td>
-            <a
-              routerLink="/administracion/editar-usuarios-por-grupo/{{ p.id }}"
-              class="btn"
-              >Editar</a
-            >
-          </td>
           <td>
             <a
               routerLink="/administracion/eliminar-usuarios-por-grupo/{{

@@ -29,13 +29,20 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'estudiante',
+    loadChildren: () =>
+      import('./modulos/estudiante/estudiante.module').then(
+        (m) => m.EstudianteModule
+      ),
+  },
+  {
     path: '**',
     component: ErrorComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),ScrollingModule],
+  imports: [RouterModule.forRoot(routes), ScrollingModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

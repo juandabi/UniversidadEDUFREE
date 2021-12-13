@@ -1,0 +1,61 @@
+<div class="row valign-wrapper">
+  <div class="col s6 input-field form-group">
+    <i class="material-icons prefix">search</i>
+    <input type="text" class="forms-control" placeholder="Buscar grupo" />
+  </div>
+  <div class="col s6 right-align">
+    <a routerLink="/administracion/crear-grupos/{{ usuarioId }}" class="btn"
+      >Crear grupo</a
+    >
+  </div>
+</div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 300px">
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Nombre grupo</th>
+        <th>Documento docente</th>
+        <th>Horario (Día - Hora Inicio - Duración)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *cdkVirtualFor="let p of listadoGrupos">
+        <tr>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.docenteId }}</td>
+          <table *ngFor="let horario of p.horario" class="horario">
+            <tr class="horario">
+              <td class="horario">{{ horario.dia }}</td>
+              <td class="horario">{{ horario.horaInicio }}:00</td>
+              <td *ngIf="horario.duracion == 1" class="horario">
+                {{ horario.duracion }} hora
+              </td>
+              <td *ngIf="horario.duracion > 1" class="horario">
+                {{ horario.duracion }} horas
+              </td>
+            </tr>
+          </table>
+          <td>
+            <a routerLink="/administracion/editar-grupos/{{ p.id }}" class="btn"
+              >Editar grupo</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/listar-usuarios-por-grupo/{{ p.id }}"
+              class="btn"
+              >Estudiantes</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/eliminar-grupos/{{ p.id }}"
+              class="btn red lighten-1"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</cdk-virtual-scroll-viewport>
