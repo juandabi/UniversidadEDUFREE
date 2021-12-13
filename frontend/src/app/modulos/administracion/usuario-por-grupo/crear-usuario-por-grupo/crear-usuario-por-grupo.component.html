@@ -1,49 +1,74 @@
-<modal>
-  <div class="row">
-    <h3 class="center-align">Crear usuario por grupo</h3>
-    <div class="row center">
-      <form
-        [formGroup]="fgValidador"
-        (ngSubmit)="GuardarUsuarioPorGrupo()"
-        class="col s12"
-      >
-        <div class="row">
-          <div class="input-field col s6">
-            <input
-              formControlName="usuarioId"
-              id="usuarioId"
-              type="text"
-              class="validate"
-              required
-            />
-            <label for="usuarioId">usuarioId</label>
-          </div>
-          <div class="input-field col s6">
-            <input
-              formControlName="grupoId"
-              id="grupoId"
-              type="text"
-              class="validate"
-              required
-            />
-            <label for="grupoId">grupoId</label>
-          </div>
+<div class="row">
+  <h2 class="center-align">Crear usuario por grupo</h2>
+  <div class="row center">
+    <form [formGroup]="fgValidador" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="usuarioId"
+            id="usuarioId"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="usuarioId">Buscar estudiante por documento</label>
         </div>
-
-        <div class="row center">
-          <div class="row input-field col s3">
-            <button
-              [disabled]="!fgValidador.valid"
-              href="#"
-              class="btn waves-effect waves-light col s12"
-              type="submit"
-              name="action"
-            >
-              Crear
-            </button>
-          </div>
+        <div class="row input-field col s3">
+          <button
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            (click)="BuscarUsuario()"
+          >
+            Buscar
+          </button>
         </div>
-      </form>
-    </div>
+        <div class="row input-field col s3">
+          <button
+            [disabled]="!fgValidador.valid"
+            href="#"
+            class="btn waves-effect waves-light col s12"
+            type="submit"
+            (click)="GuardarUsuarioPorGrupo()"
+          >
+            Agregar
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Datos del estudiante</h3>
+        <div class="input-field col s6">
+          <input
+            formControlName="nombres"
+            id="nombres"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="nombres" class="active">Nombres</label>
+        </div>
+        <div class="input-field col s6">
+          <input
+            formControlName="apellidos"
+            id="apellidos"
+            type="text"
+            class="validate"
+            required
+          />
+          <label for="apellidos" class="active">Apellidos</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            formControlName="correo"
+            id="correo"
+            type="email"
+            class="validate"
+            required
+          />
+          <label for="correo" class="active">correo electronico</label>
+        </div>
+      </div>
+    </form>
   </div>
-</modal>
+</div>

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ModalModule } from '@bit/valor-software.ngx-bootstrap.modal';
 import { FiltroAsignaturaPipe } from 'src/app/pipes/filtro-asignatura.pipe';
 import { FiltroEstudiantesPipe } from 'src/app/pipes/filtro-estudiantes.pipe';
 import { FiltroGrupoPipe } from 'src/app/pipes/filtro-grupo.pipe';
@@ -78,6 +79,7 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
+    ModalModule.forRoot(),
   ],
 })
 export class AdministracionModule {}

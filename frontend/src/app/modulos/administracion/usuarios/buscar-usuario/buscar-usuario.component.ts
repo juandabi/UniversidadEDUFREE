@@ -20,6 +20,7 @@ export class BuscarUsuarioComponent implements OnInit {
       .ObtenerUsuarios()
       .subscribe((datos: ModeloUsuario[]) => {
         this.listadoUsuarios = datos;
+        console.log(ModeloUsuario);
       });
   }
 }

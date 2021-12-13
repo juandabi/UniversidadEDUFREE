@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ModeloAsignatura } from 'src/app/modelos/asignatura.modelo';
 import { AsignaturaService } from 'src/app/servicios/asignatura.service';
 
@@ -34,6 +34,7 @@ export class BuscarAsignaturaComponent implements OnInit {
           this.listadoAsignaturas = listado.filter(
             (a) => a.programaAcademicoId === arg
           );
+          console.log(datos[0]);
         }
       });
   }

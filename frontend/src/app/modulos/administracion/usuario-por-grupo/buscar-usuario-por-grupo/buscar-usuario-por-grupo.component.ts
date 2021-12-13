@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModeloUsuarioPorGrupo } from 'src/app/modelos/usuarioPorGrupo.modelo';
-import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.service';
+import { ModeloGrupo } from 'src/app/modelos/grupo.modelo';
+import { ModeloUsuario } from 'src/app/modelos/usuario.modelo';
+import { GrupoService } from 'src/app/servicios/grupo.service';
 
 @Component({
   selector: 'app-buscar-usuario-por-grupo',
@@ -9,12 +10,13 @@ import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.serv
   styleUrls: ['./buscar-usuario-por-grupo.component.css'],
 })
 export class BuscarUsuarioPorGrupoComponent implements OnInit {
-  listadoUsuariosPorGrupos: ModeloUsuarioPorGrupo[] = [];
+  listadoUsuariosPorGrupos: ModeloGrupo[] = [];
+  listadoEstudiantes: ModeloUsuario[] = [];
   grupoId: string = '';
   filtroEstudiantes = [];
 
   constructor(
-    private usuariosPorGrupoServicio: UsuarioPorGrupoService,
+    private grupoServicio: GrupoService,
     private route: ActivatedRoute
   ) {}
 
@@ -24,17 +26,19 @@ export class BuscarUsuarioPorGrupoComponent implements OnInit {
   }
 
   ObtenerUsuariosPorGrupos(arg: string) {
-    this.usuariosPorGrupoServicio
-      .ObtenerUsuariosPorGrupo()
-      .subscribe((datos: ModeloUsuarioPorGrupo[]) => {
-        let listado = datos;
-        if (arg != '') {
-          this.listadoUsuariosPorGrupos = listado;
-        } else {
-          this.listadoUsuariosPorGrupos = listado.filter(
-            (a) => a.grupoId === arg
-          );
-        }
-      });
+    this.grupoServicio.ObtenerGrupos().subscribe((datos: ModeloGrupo[]) => {
+      let listado = datos;
+      if (!arg) {
+        this.listadoUsuariosPorGrupos = listado;
+      } else {
+        this.listadoUsuariosPorGrupos = listado.filter((a) => a.id === arg);
+        this.listadoUsuariosPorGrupos.forEach((grupo) => {
+          grupo.usuarios?.forEach((usuario) => {
+            this.listadoEstudiantes.push(usuario);
+          });
+        });
+      }
+      console.log(this.listadoEstudiantes);
+    });
   }
 }

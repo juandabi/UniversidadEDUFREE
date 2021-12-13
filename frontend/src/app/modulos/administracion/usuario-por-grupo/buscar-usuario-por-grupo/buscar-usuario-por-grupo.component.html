@@ -17,39 +17,44 @@
     >
   </div>
 </div>
+<cdk-virtual-scroll-viewport itemSize="0" style="min-height: 400px">
+  <table class="table responsive">
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *cdkVirtualFor="
+          let p of listadoEstudiantes | filtroEstudiantes: filtroEstudiantes
+        "
+      >
+        <tr>
+          <td>{{ p.id }}</td>
+          <td>{{ p.nombres }}</td>
+          <td>{{ p.apellidos }}</td>
 
-<table class="table responsive">
-  <thead>
-    <tr>
-      <th>Documento</th>
-      <th>Nombres</th>
-      <th>Apellidos</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="
-        let p of listadoUsuariosPorGrupos | filtroEstudiantes: filtroEstudiantes
-      "
-    >
-      <td>{{ p.id }}</td>
-      <td>{{ p.grupoId }}</td>
-      <td>{{ p.usuarioId }}</td>
-
-      <td>
-        <a
-          routerLink="/administracion/editar-usuarios-por-grupo/{{ p.id }}"
-          class="btn"
-          >Editar</a
-        >
-      </td>
-      <td>
-        <a
-          routerLink="/administracion/eliminar-usuarios-por-grupo/{{ p.id }}"
-          class="btn red lighten-1"
-          >Eliminar</a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
+          <td>
+            <a
+              routerLink="/administracion/editar-usuarios-por-grupo/{{ p.id }}"
+              class="btn"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <a
+              routerLink="/administracion/eliminar-usuarios-por-grupo/{{
+                p.id
+              }}"
+              class="btn red lighten-1"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</cdk-virtual-scroll-viewport>

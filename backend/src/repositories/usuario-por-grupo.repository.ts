@@ -8,9 +8,7 @@ export class UsuarioPorGrupoRepository extends DefaultCrudRepository<
   typeof UsuarioPorGrupo.prototype.id,
   UsuarioPorGrupoRelations
 > {
-  constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource,
-  ) {
+  constructor(@inject('datasources.mongodb') dataSource: MongodbDataSource) {
     super(UsuarioPorGrupo, dataSource);
   }
 }

@@ -5,8 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroEstudiantesPipe implements PipeTransform {
   transform(value: any[], arg: any): any {
-    const resultadoEstudiante = [];
-
+    const resultadoEstudiantes = [];
     if (!value) {
       return [];
     }
@@ -14,11 +13,19 @@ export class FiltroEstudiantesPipe implements PipeTransform {
       return value;
     }
     arg = String(arg).toLowerCase();
-    for (const estudiante of value) {
-      if (estudiante.id.indexOf(arg) > -1) {
-        resultadoEstudiante.push(estudiante);
+    for (const usuario of value) {
+      if (usuario.id.toLowerCase().indexOf(String(arg).toLowerCase()) > -1) {
+        resultadoEstudiantes.push(usuario);
+      } else if (
+        usuario.nombres.toLowerCase().indexOf(String(arg).toLowerCase()) > -1
+      ) {
+        resultadoEstudiantes.push(usuario);
+      } else if (
+        usuario.apellidos.toLowerCase().indexOf(String(arg).toLowerCase()) > -1
+      ) {
+        resultadoEstudiantes.push(usuario);
       }
-      return resultadoEstudiante;
     }
+    return resultadoEstudiantes;
   }
 }

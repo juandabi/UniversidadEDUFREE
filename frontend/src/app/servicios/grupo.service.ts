@@ -18,7 +18,9 @@ export class GrupoService {
   }
 
   ObtenerGrupos(): Observable<ModeloGrupo[]> {
-    return this.http.get<ModeloGrupo[]>(`${this.url}/grupos`);
+    return this.http.get<ModeloGrupo[]>(
+      `${this.url}/grupos?filter[include][]=usuarios`
+    );
   }
 
   ObtenerGrupoPorId(id: string): Observable<ModeloGrupo> {
