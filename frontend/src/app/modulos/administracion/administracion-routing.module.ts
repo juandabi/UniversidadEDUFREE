@@ -107,7 +107,7 @@ const routes: Routes = [
     component: BuscarAsignaturaComponent,
   },
   {
-    path: 'crear-asignaturas',
+    path: 'crear-asignaturas/:programaAcademicoId',
     component: CrearAsignaturaComponent,
   },
   {
@@ -133,7 +133,7 @@ const routes: Routes = [
     component: BuscarGrupoComponent,
   },
   {
-    path: 'crear-grupos',
+    path: 'crear-grupos/:asignaturaId',
     component: CrearGrupoComponent,
   },
   {

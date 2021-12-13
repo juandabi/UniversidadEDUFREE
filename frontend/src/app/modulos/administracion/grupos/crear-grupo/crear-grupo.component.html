@@ -1,64 +1,249 @@
-<div class="row">
-  <h3 class="center-align">Crear grupo</h3>
-  <div class="row center">
-    <form [formGroup]="fgValidador" (ngSubmit)="GuardarGrupo()" class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input
-            formControlName="nombre"
-            id="nombre"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="nombre">Nombre</label>
-        </div>
-        <div class="input-field col s6">
-          <input
-            formControlName="asignaturaId"
-            id="asignaturaId"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="asignaturaId">asignatura</label>
-        </div>
+<h3 class="center-align">Crear grupo</h3>
+<div class="row center">
+  <form [formGroup]="fgValidador" (ngSubmit)="GuardarGrupo()" class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          formControlName="nombre"
+          id="nombre"
+          type="text"
+          class="validate"
+          required
+        />
+        <label for="nombre">Nombre</label>
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input
-            formControlName="docenteId"
-            id="docenteId"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="docenteId">docente</label>
-        </div>
-        <div class="input-field col s6">
-          <input
-            formControlName="horario"
-            id="horario"
-            type="text"
-            class="validate"
-            required
-          />
-          <label for="horario">horario</label>
-        </div>
+      <div class="input-field col s6">
+        <input
+          formControlName="docenteId"
+          id="docenteId"
+          type="text"
+          class="validate"
+          required
+        />
+        <label for="docenteId">docente id</label>
       </div>
-      <div class="row center">
-        <div class="row input-field col s3">
-          <button
-            [disabled]="!fgValidador.valid"
-            href="#"
-            class="btn waves-effect waves-light col s12"
-            type="submit"
-            name="action"
-          >
-            Crear
-          </button>
-        </div>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Hora de inicio</th>
+            <th>Duración en horas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <select formControlName="horarioDia1" name="horarioDia1" required>
+                <option value="" disabled selected>Seleccione un día</option>
+
+                <option value="{{ dia }}" *ngFor="let dia of listadoDias">
+                  {{ dia }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioHoraInicio1"
+                name="horarioHoraInicio1"
+                required
+              >
+                <option value="" disabled selected>
+                  Seleccione una hora de inicio
+                </option>
+
+                <option
+                  value="{{ horaInicio }}"
+                  *ngFor="let horaInicio of listadoHoras"
+                >
+                  {{ horaInicio }}:00
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioDuracion1"
+                name="horarioDuracion1"
+                required
+              >
+                <option value="" disabled selected>
+                  Seleccione la duración en horas
+                </option>
+
+                <option
+                  value="{{ duracion }}"
+                  *ngFor="let duracion of listadoDuracion"
+                >
+                  {{ duracion }}
+                  <p *ngIf="duracion == 1">hora</p>
+                  <p *ngIf="duracion > 1">horas</p>
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select formControlName="horarioDia2" name="horarioDia2"  >
+                <option value="" disabled selected>Seleccione un día</option>
+
+                <option value="{{ dia }}" *ngFor="let dia of listadoDias">
+                  {{ dia }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioHoraInicio2"
+                name="horarioHoraInicio2"
+
+              >
+                <option value="" disabled selected>
+                  Seleccione una hora de inicio
+                </option>
+
+                <option
+                  value="{{ horaInicio }}"
+                  *ngFor="let horaInicio of listadoHoras"
+                >
+                  {{ horaInicio }}:00
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioDuracion2"
+                name="horarioDuracion"
+
+              >
+                <option value="" disabled selected>
+                  Seleccione la duración en horas
+                </option>
+
+                <option
+                  value="{{ duracion }}"
+                  *ngFor="let duracion of listadoDuracion"
+                >
+                  {{ duracion }}
+                  <p *ngIf="duracion == 1">hora</p>
+                  <p *ngIf="duracion > 1">horas</p>
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select formControlName="horarioDia3" name="horarioDia3" >
+                <option value="" disabled selected>Seleccione un día</option>
+
+                <option value="{{ dia }}" *ngFor="let dia of listadoDias">
+                  {{ dia }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioHoraInicio3"
+                name="horarioHoraInicio3"
+
+              >
+                <option value="" disabled selected>
+                  Seleccione una hora de inicio
+                </option>
+
+                <option
+                  value="{{ horaInicio }}"
+                  *ngFor="let horaInicio of listadoHoras"
+                >
+                  {{ horaInicio }}:00
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioDuracion3"
+                name="horarioDuracion3"
+
+              >
+                <option value="" disabled selected>
+                  Seleccione la duración en horas
+                </option>
+
+                <option
+                  value="{{ duracion }}"
+                  *ngFor="let duracion of listadoDuracion"
+                >
+                  {{ duracion }}
+                  <p *ngIf="duracion == 1">hora</p>
+                  <p *ngIf="duracion > 1">horas</p>
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select formControlName="horarioDia4" name="horarioDia4" >
+                <option value="" disabled selected>Seleccione un día</option>
+
+                <option value="{{ dia }}" *ngFor="let dia of listadoDias">
+                  {{ dia }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioHoraInicio4"
+                name="horarioHoraInicio4"
+
+              >
+                <option value="" disabled selected>
+                  Seleccione una hora de inicio
+                </option>
+
+                <option
+                  value="{{ horaInicio }}"
+                  *ngFor="let horaInicio of listadoHoras"
+                >
+                  {{ horaInicio }}:00
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                formControlName="horarioDuracion4"
+                name="horarioDuracion4"
+
+              >
+                <option value="" disabled selected>
+                  Seleccione la duración en horas
+                </option>
+
+                <option
+                  value="{{ duracion }}"
+                  *ngFor="let duracion of listadoDuracion"
+                >
+                  {{ duracion }}
+                  <p *ngIf="duracion == 1">hora</p>
+                  <p *ngIf="duracion > 1">horas</p>
+                </option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row center">
+      <div class="row input-field col s3">
+        <button
+          [disabled]="!fgValidador.valid"
+          href="#"
+          class="btn waves-effect waves-light col s12"
+          type="submit"
+          name="action"
+        >
+          Crear
+        </button>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
