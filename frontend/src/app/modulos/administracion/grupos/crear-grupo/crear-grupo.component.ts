@@ -41,7 +41,7 @@ export class CrearGrupoComponent implements OnInit {
 
   ngOnInit(): void {
     this.asignaturaId = this.route.snapshot.params['asignaturaId'];
-    console.log(this.asignaturaId);
+
   }
 
   GuardarGrupo() {
