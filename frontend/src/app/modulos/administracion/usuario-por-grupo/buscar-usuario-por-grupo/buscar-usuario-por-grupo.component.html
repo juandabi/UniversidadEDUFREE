@@ -1,22 +1,41 @@
-<a routerLink="/administracion/crear-usuarios-por-grupo" class="btn"
-  >Crear Usuario por grupo
-</a>
+<div class="row valign-wrapper">
+  <div class="col s6 input-field form-group">
+    <i class="material-icons prefix">search</i>
+    <input
+      type="text"
+      class="forms-control"
+      placeholder="Buscar usuarios por grupo"
+      [(ngModel)]="filtroEstudiantes"
+      name="filtroEstudiantes"
+    />
+  </div>
+  <div class="col s6 right-align">
+    <a
+      routerLink="/administracion/crear-usuarios-por-grupo/{{ grupoId }}"
+      class="btn"
+      >Agregar estudiantes</a
+    >
+  </div>
+</div>
 
 <table class="table responsive">
   <thead>
     <tr>
-      <th>id</th>
-      <th>Grupo</th>
-      <th>Usuario</th>
-      <th>Calificación</th>
+      <th>Documento</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of listadoUsuariosPorGrupos">
+    <tr
+      *ngFor="
+        let p of listadoUsuariosPorGrupos | filtroEstudiantes: filtroEstudiantes
+      "
+    >
       <td>{{ p.id }}</td>
       <td>{{ p.grupoId }}</td>
       <td>{{ p.usuarioId }}</td>
-      <td>{{ p.calificacion }}</td>
+
       <td>
         <a
           routerLink="/administracion/editar-usuarios-por-grupo/{{ p.id }}"

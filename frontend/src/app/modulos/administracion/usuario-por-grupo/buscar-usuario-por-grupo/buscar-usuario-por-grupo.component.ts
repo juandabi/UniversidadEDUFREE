@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModeloUsuarioPorGrupo } from 'src/app/modelos/usuarioPorGrupo.modelo';
 import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.service';
 
@@ -9,18 +10,31 @@ import { UsuarioPorGrupoService } from 'src/app/servicios/usuario-por-grupo.serv
 })
 export class BuscarUsuarioPorGrupoComponent implements OnInit {
   listadoUsuariosPorGrupos: ModeloUsuarioPorGrupo[] = [];
+  grupoId: string = '';
+  filtroEstudiantes = [];
 
-  constructor(private usuariosPorGrupoServicio: UsuarioPorGrupoService) {}
+  constructor(
+    private usuariosPorGrupoServicio: UsuarioPorGrupoService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.ObtenerUsuariosPorGrupos();
+    this.grupoId = this.route.snapshot.params['grupoId'];
+    this.ObtenerUsuariosPorGrupos(this.grupoId);
   }
 
-  ObtenerUsuariosPorGrupos() {
+  ObtenerUsuariosPorGrupos(arg: string) {
     this.usuariosPorGrupoServicio
       .ObtenerUsuariosPorGrupo()
       .subscribe((datos: ModeloUsuarioPorGrupo[]) => {
-        this.listadoUsuariosPorGrupos = datos;
+        let listado = datos;
+        if (arg != '') {
+          this.listadoUsuariosPorGrupos = listado;
+        } else {
+          this.listadoUsuariosPorGrupos = listado.filter(
+            (a) => a.grupoId === arg
+          );
+        }
       });
   }
 }

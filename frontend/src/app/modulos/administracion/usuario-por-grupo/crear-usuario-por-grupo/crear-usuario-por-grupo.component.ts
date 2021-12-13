@@ -13,7 +13,6 @@ export class CrearUsuarioPorGrupoComponent implements OnInit {
   fgValidador: FormGroup = this.fb.group({
     usuarioId: ['', [Validators.required]],
     grupoId: ['', [Validators.required]],
-    calificacion: ['', [Validators.required]],
   });
 
   constructor(
@@ -27,11 +26,9 @@ export class CrearUsuarioPorGrupoComponent implements OnInit {
   GuardarUsuarioPorGrupo() {
     let usuarioId = this.fgValidador.controls['usuarioId'].value;
     let grupoId = this.fgValidador.controls['grupoId'].value;
-    let calificacion = this.fgValidador.controls['calificacion'].value;
     let p = new ModeloUsuarioPorGrupo();
     p.usuarioId = usuarioId;
     p.grupoId = grupoId;
-    p.calificacion = calificacion;
     this.servicioUsuarioPorGrupo.CrearUsuarioPorGrupo(p).subscribe({
       next: (datos: ModeloUsuarioPorGrupo) => {
         alert('UsuarioPorGrupo creado exitosamente');

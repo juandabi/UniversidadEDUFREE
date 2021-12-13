@@ -151,11 +151,19 @@ const routes: Routes = [
     component: BuscarUsuarioPorGrupoComponent,
   },
   {
+    path: 'listar-usuarios-por-grupo/:grupoId',
+    component: BuscarUsuarioPorGrupoComponent,
+  },
+  {
     path: 'buscar-usuarios-por-grupo',
     component: BuscarUsuarioPorGrupoComponent,
   },
   {
     path: 'crear-usuarios-por-grupo',
+    component: CrearUsuarioPorGrupoComponent,
+  },
+  {
+    path: 'crear-usuarios-por-grupo/:grupoId',
     component: CrearUsuarioPorGrupoComponent,
   },
   {

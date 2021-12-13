@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FiltroAsignaturaPipe } from 'src/app/pipes/filtro-asignatura.pipe';
+import { FiltroEstudiantesPipe } from 'src/app/pipes/filtro-estudiantes.pipe';
 import { FiltroGrupoPipe } from 'src/app/pipes/filtro-grupo.pipe';
 import { FiltroProgramaPipe } from 'src/app/pipes/filtro-programa.pipe';
 import { FiltroUsuarioPipe } from 'src/app/pipes/filtro-usuario.pipe';
@@ -64,7 +65,8 @@ import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-u
     FiltroUsuarioPipe,
     FiltroProgramaPipe,
     FiltroAsignaturaPipe,
-    FiltroGrupoPipe
+    FiltroGrupoPipe,
+    FiltroEstudiantesPipe,
   ],
   imports: [
     CommonModule,
